@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRENCH HERO! - Matteo ESTATE 2025</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Comic Sans MS',cursive;background:linear-gradient(135deg,#002395 0%,#ED1C24 100%);color:#333;min-height:100vh;padding:10px}
+.container{max-width:1300px;margin:0 auto;background:white;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.3);overflow:hidden}
+header{background:linear-gradient(135deg,#002395 0%,#ED1C24 100%);color:white;padding:25px;text-align:center;border-bottom:5px solid #333}
+header h1{font-size:2.2em;text-shadow:3px 3px 0 #333;margin-bottom:8px}
+.gamification-bar{background:linear-gradient(90deg,#ffd700 0%,#ffed4e 100%);padding:15px 20px;border-bottom:3px solid #333;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.xp-container{flex:1;min-width:250px}
+.xp-bar{background:#333;border-radius:20px;height:30px;overflow:hidden;border:3px solid #333;position:relative}
+.xp-fill{background:linear-gradient(90deg,#002395 0%,#0055A4 100%);height:100%;transition:width 0.5s;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
+.stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat-box{background:white;padding:8px 15px;border-radius:15px;border:3px solid #333;text-align:center;box-shadow:3px 3px 0 #333}
+.stat-label{font-size:0.75em;color:#666}
+.stat-value{font-size:1.3em;font-weight:bold;color:#ED1C24}
+nav{background:#333;padding:12px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:sticky;top:0;z-index:100}
+nav button{background:linear-gradient(135deg,#002395 0%,#0055A4 100%);color:white;border:3px solid #333;padding:8px 14px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:0.9em;font-weight:bold;transition:all 0.3s;box-shadow:3px 3px 0 rgba(0,0,0,0.3)}
+nav button:hover{transform:translateY(-2px)}
+nav button.active{background:linear-gradient(135deg,#ED1C24 0%,#ff6b6b 100%)}
+main{padding:25px;min-height:600px}
+.section{display:none}
+.section.active{display:block;animation:fadeIn 0.5s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+h2{color:#ED1C24;font-size:1.8em;margin-bottom:20px}
+h3{color:#002395;font-size:1.4em;margin:18px 0 10px}
+h4{color:#0055A4;margin:12px 0 8px}
+.card{background:#f8f9fa;border:3px solid #333;border-radius:15px;padding:18px;margin-bottom:18px;box-shadow:5px 5px 0 rgba(0,0,0,0.2)}
+.grammar-table{width:100%;border-collapse:collapse;margin:12px 0;background:white;border:3px solid #333;border-radius:10px;overflow:hidden}
+.grammar-table th{background:linear-gradient(135deg,#002395 0%,#0055A4 100%);color:white;padding:12px;text-align:left}
+.grammar-table td{padding:10px;border-bottom:2px solid #ddd}
+.flashcard-container{perspective:1000px;margin:20px 0}
+.flashcard{width:100%;max-width:400px;height:250px;margin:0 auto;position:relative;cursor:pointer}
+.flashcard-inner{position:relative;width:100%;height:100%;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flashcard-front,.flashcard-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border:4px solid #333;border-radius:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.flashcard-front{background:linear-gradient(135deg,#002395 0%,#0055A4 100%);color:white}
+.flashcard-back{background:linear-gradient(135deg,#ED1C24 0%,#ff6b6b 100%);color:white;transform:rotateY(180deg)}
+.flashcard-emoji{font-size:3.5em;margin-bottom:10px}
+.flashcard-text{font-size:1.6em;font-weight:bold}
+.flashcard-controls{display:flex;justify-content:center;gap:12px;margin-top:15px;flex-wrap:wrap}
+.btn{background:linear-gradient(135deg,#002395 0%,#0055A4 100%);color:white;border:3px solid #333;padding:10px 20px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:1em;font-weight:bold;transition:all 0.3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-success{background:linear-gradient(135deg,#00b894 0%,#00a381 100%)}
+.btn-danger{background:linear-gradient(135deg,#ED1C24 0%,#ff6b6b 100%)}
+.btn-warning{background:linear-gradient(90deg,#ffd700 0%,#ffed4e 100%);color:#333}
+.quiz-container{background:white;border:3px solid #333;border-radius:15px;padding:25px;margin:18px 0}
+.quiz-question{font-size:1.2em;margin-bottom:18px;font-weight:bold}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:#f8f9fa;border:3px solid #333;padding:12px;border-radius:10px;cursor:pointer;transition:all 0.3s;font-family:inherit;font-size:1em;text-align:left}
+.quiz-option:hover{background:#002395;color:white}
+.quiz-option.correct{background:#00b894;color:white}
+.quiz-option.wrong{background:#ED1C24;color:white}
+.dialogue{background:#f8f9fa;border-radius:10px;padding:18px;margin:12px 0;max-height:400px;overflow-y:auto}
+.dialogue-line{margin:8px 0;padding:10px;border-radius:8px}
+.dialogue-line.staff{background:#002395;color:white;text-align:right}
+.dialogue-line.customer{background:#ED1C24;color:white}
+.dialogue-line.blank{background:#fff3cd;border:2px dashed #333;font-style:italic}
+.input-field{width:100%;padding:10px;border:3px solid #333;border-radius:10px;font-family:inherit;font-size:1em;margin:8px 0}
+textarea.input-field{min-height:100px;resize:vertical}
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{background:#f8f9fa;border:3px solid #333;padding:8px 15px;border-radius:10px;cursor:pointer;font-family:inherit;font-weight:bold;font-size:0.9em}
+.tab.active{background:linear-gradient(135deg,#002395 0%,#0055A4 100%);color:white}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.example-box{background:#fff3cd;border:2px solid #333;border-radius:10px;padding:12px;margin:10px 0}
+.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:18px 0}
+.dashboard-card{background:white;border:3px solid #333;border-radius:15px;padding:18px;text-align:center;box-shadow:3px 3px 0 rgba(0,0,0,0.2)}
+.dashboard-value{font-size:2.2em;font-weight:bold;color:#ED1C24;margin:8px 0}
+.notification{position:fixed;top:20px;right:20px;background:linear-gradient(135deg,#00b894 0%,#00a381 100%);color:white;padding:15px 25px;border-radius:15px;border:3px solid #333;z-index:1000;animation:slideIn 0.5s;font-weight:bold}
+@keyframes slideIn{from{transform:translateX(400px)}to{transform:translateX(0)}}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px;margin:18px 0}
+.photo-card{background:white;border:3px solid #333;border-radius:15px;overflow:hidden;cursor:pointer;transition:all 0.3s}
+.photo-card:hover{transform:translateY(-5px)}
+.photo-placeholder{width:100%;height:180px;background:linear-gradient(135deg,#002395 0%,#ED1C24 100%);display:flex;align-items:center;justify-content:center;font-size:4em}
+.photo-info{padding:12px}
+.achievement{display:inline-block;background:white;border:3px solid #333;border-radius:15px;padding:12px;margin:8px;text-align:center;width:140px;vertical-align:top}
+.achievement.locked{opacity:0.4;filter:grayscale(100%)}
+.achievement-icon{font-size:2.5em;margin-bottom:8px}
+.mission-card{background:white;border:4px solid #333;border-radius:15px;padding:18px;margin-bottom:18px;position:relative;overflow:hidden}
+.mission-easy::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:#00b894}
+.mission-medium::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:#ffd700}
+.mission-hard::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:#ff6b6b}
+.mission-hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,#002395,#ED1C24)}
+.map-container{background:linear-gradient(135deg,#a8e6cf 0%,#dcedc1 100%);border:4px solid #333;border-radius:15px;padding:15px;position:relative;height:500px;margin:18px 0}
+.map-place{position:absolute;background:white;border:3px solid #333;border-radius:10px;padding:8px;cursor:pointer;font-size:0.9em;font-weight:bold;text-align:center;min-width:80px}
+.map-place:hover{transform:scale(1.1);z-index:10}
+.map-road{position:absolute;background:#888;border:2px solid #333}
+@media(max-width:768px){header h1{font-size:1.6em}.gamification-bar{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>🐓 FRENCH HERO! 🇫🇷</h1>
+<p>Il Corso di Matteo Nikollari - ESTATE 2025</p>
+<p style="font-size:1em;margin-top:8px">Recupero Lingua Francese 💥</p>
+</header>
+
+<div class="gamification-bar">
+<div class="xp-container">
+<div style="margin-bottom:5px;font-weight:bold">
+Livello <span id="currentLevel">1</span> - <span id="levelName">Débutant</span>
+</div>
+<div class="xp-bar">
+<div class="xp-fill" id="xpFill" style="width:0%"><span id="xpText">0 / 100 XP</span></div>
+</div>
+</div>
+<div class="stats">
+<div class="stat-box"><div class="stat-label">🔥 Streak</div><div class="stat-value" id="streakCount">0</div></div>
+<div class="stat-box"><div class="stat-label">✅ Missioni</div><div class="stat-value" id="missionsCount">0</div></div>
+<div class="stat-box"><div class="stat-label">🏆 Trofei</div><div class="stat-value" id="achievementsCount">0</div></div>
+<div class="stat-box"><div class="stat-label">⏱️ Minuti</div><div class="stat-value" id="minutesCount">0</div></div>
+</div>
+</div>
+
+<nav id="mainNav">
+<button class="nav-btn active" data-section="home">🏠 Home</button>
+<button class="nav-btn" data-section="grammar">📖 Grammatica</button>
+<button class="nav-btn" data-section="vocabulary">🔤 Vocabolario</button>
+<button class="nav-btn" data-section="flashcards">🎴 Flashcard</button>
+<button class="nav-btn" data-section="verbs">⚡ Verbi</button>
+<button class="nav-btn" data-section="conjugation">🔄 Coniugazioni</button>
+<button class="nav-btn" data-section="quiz">🎯 Quiz</button>
+<button class="nav-btn" data-section="speaking">🗣️ Speaking</button>
+<button class="nav-btn" data-section="photos">📷 Photo</button>
+<button class="nav-btn" data-section="train">🚂 Treno</button>
+<button class="nav-btn" data-section="restaurant">🥐 Ristorante</button>
+<button class="nav-btn" data-section="directions">🗺️ Indicazioni</button>
+<button class="nav-btn" data-section="diary">📔 Diario</button>
+<button class="nav-btn" data-section="missions">🎮 Missioni</button>
+<button class="nav-btn" data-section="achievements">🏆 Trofei</button>
+<button class="nav-btn" data-section="exams">📝 Esami</button>
+<button class="nav-btn" data-section="plan">📅 Piano</button>
+<button class="nav-btn" data-section="tutor">🤖 AI Tutor</button>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<div id="home" class="section active">
+<h2>👋 Ciao Matteo! Benvenuto nel tuo French Hero Journey!</h2>
+<div class="card">
+<h3>🎯 Il Tuo Obiettivo</h3>
+<p style="font-size:1.1em;margin:12px 0">
+Recuperare il voto in francese passando da <strong style="color:#ED1C24">5</strong> a <strong style="color:#00a381">7+</strong> entro settembre!
+</p>
+<div style="background:#ffd700;padding:12px;border-radius:10px;margin-top:12px">
+<strong>💪 Allez! Ce la puoi fare!</strong>
+</div>
+</div>
+<div class="card">
+<h3>📊 I Tuoi Progressi</h3>
+<div class="dashboard-grid">
+<div class="dashboard-card"><div>⏱️ Tempo</div><div class="dashboard-value" id="homeTime">0h</div></div>
+<div class="dashboard-card"><div>📚 Lezioni</div><div class="dashboard-value" id="homeLessons">0</div></div>
+<div class="dashboard-card"><div>🎯 Quiz</div><div class="dashboard-value" id="homeQuizzes">0</div></div>
+<div class="dashboard-card"><div>⭐ Punti</div><div class="dashboard-value" id="homeXP">0</div></div>
+</div>
+</div>
+<div class="card">
+<h3>🎮 Missioni Giornaliere</h3>
+<div id="dailyMissions"></div>
+</div>
+<div class="card">
+<h3>💡 Consiglio del Giorno</h3>
+<p id="dailyTip" style="font-size:1em;padding:12px;background:#f8f9fa;border-radius:10px"></p>
+</div>
+</div>
+
+<!-- GRAMMAR -->
+<div id="grammar" class="section">
+<h2>📖 Grammatica Francese</h2>
+<div class="tabs" id="grammarTabs">
+<button class="tab active" data-tab="g-present">Présent</button>
+<button class="tab" data-tab="g-passe">Passé Composé</button>
+<button class="tab" data-tab="g-imparfait">Imparfait</button>
+<button class="tab" data-tab="g-futur">Futur</button>
+<button class="tab" data-tab="g-conditionnel">Conditionnel</button>
+<button class="tab" data-tab="g-pronoms">Pronomi</button>
+<button class="tab" data-tab="g-articles">Articles</button>
+<button class="tab" data-tab="g-negation">Négation</button>
+<button class="tab" data-tab="g-comparatifs">Comparatifs</button>
+<button class="tab" data-tab="g-prepositions">Prépositions</button>
+<button class="tab" data-tab="g-participe">Participe Passé</button>
+<button class="tab" data-tab="g-pronominal">Verbi Pronominali</button>
+</div>
+
+<div id="g-present" class="tab-content active">
+<div class="card">
+<h3>⏱ Le Présent</h3>
+<p><strong>Uso:</strong> Azioni che accadono ORA, abitudini, verità generali</p>
+<h4>📝 Verbi regolari in -ER (parler)</h4>
+<table class="grammar-table">
+<tr><th>Pronome</th><th>Desinenza</th><th>Esempio</th></tr>
+<tr><td>Je</td><td>-e</td><td>Je parl<strong>e</strong></td></tr>
+<tr><td>Tu</td><td>-es</td><td>Tu parl<strong>es</strong></td></tr>
+<tr><td>Il/Elle</td><td>-e</td><td>Il parl<strong>e</strong></td></tr>
+<tr><td>Nous</td><td>-ons</td><td>Nous parl<strong>ons</strong></td></tr>
+<tr><td>Vous</td><td>-ez</td><td>Vous parl<strong>ez</strong></td></tr>
+<tr><td>Ils/Elles</td><td>-ent</td><td>Ils parl<strong>ent</strong></td></tr>
+</table>
+<h4>⚡ Verbi irregolari</h4>
+<table class="grammar-table">
+<tr><th>Verbo</th><th>Je</th><th>Tu</th><th>Il</th><th>Nous</th><th>Vous</th><th>Ils</th></tr>
+<tr><td><strong>ÊTRE</strong></td><td>suis</td><td>es</td><td>est</td><td>sommes</td><td>êtes</td><td>sont</td></tr>
+<tr><td><strong>AVOIR</strong></td><td>ai</td><td>as</td><td>a</td><td>avons</td><td>avez</td><td>ont</td></tr>
+<tr><td><strong>ALLER</strong></td><td>vais</td><td>vas</td><td>va</td><td>allons</td><td>allez</td><td>vont</td></tr>
+<tr><td><strong>FAIRE</strong></td><td>fais</td><td>fais</td><td>fait</td><td>faisons</td><td>faites</td><td>font</td></tr>
+<tr><td><strong>VENIR</strong></td><td>viens</td><td>viens</td><td>vient</td><td>venons</td><td>venez</td><td>viennent</td></tr>
+<tr><td><strong>VOULOIR</strong></td><td>veux</td><td>veux</td><td>veut</td><td>voulons</td><td>voulez</td><td>veulent</td></tr>
+<tr><td><strong>POUVOIR</strong></td><td>peux</td><td>peux</td><td>peut</td><td>pouvons</td><td>pouvez</td><td>peuvent</td></tr>
+<tr><td><strong>SAVOIR</strong></td><td>sais</td><td>sais</td><td>sait</td><td>savons</td><td>savez</td><td>savent</td></tr>
+</table>
+<div class="example-box">
+<strong>🎯 Esempi:</strong>
+<ul style="margin-left:20px;line-height:1.8">
+<li><strong>Je suis italien.</strong> - Sono italiano.</li>
+<li><strong>Tu as un frère?</strong> - Hai un fratello?</li>
+<li><strong>Nous allons à l'école.</strong> - Andiamo a scuola.</li>
+</ul>
+</div>
+<div class="example-box" style="background:#ffe0e0">
+<strong>⚠️ Attenzione:</strong> In francese si usa AVOIR per: ho fame (j'ai faim), ho sete (j'ai soif), ho freddo (j'ai froid), ho caldo (j'ai chaud), ho X anni (j'ai X ans)!
+</div>
+</div>
+</div>
+
+<div id="g-passe" class="tab-content">
+<div class="card">
+<h3>⏪ Le Passé Composé</h3>
+<p><strong>Uso:</strong> Azioni passate completate</p>
+<h4>📝 Struttura</h4>
+<p style="font-size:1.1em;padding:10px;background:#fff3cd;border-radius:8px"><strong>SOGGETTO + avoir/être (al présent) + participe passé</strong></p>
+<h4>🔑 Verbi con ÊTRE (DR MRS VANDERTRAMP)</h4>
+<table class="grammar-table">
+<tr><th>Verbo</th><th>Significato</th></tr>
+<tr><td><strong>D</strong>evenir</td><td>diventare</td></tr>
+<tr><td><strong>R</strong>evenir</td><td>tornare</td></tr>
+<tr><td><strong>M</strong>onter / <strong>R</strong>ester / <strong>S</strong>ortir</td><td>salire/restare/uscire</td></tr>
+<tr><td><strong>V</strong>enir / <strong>A</strong>ller</td><td>venire/andare</td></tr>
+<tr><td><strong>N</strong>aître / <strong>D</strong>escendre</td><td>nascere/scendere</td></tr>
+<tr><td><strong>E</strong>ntrer / <strong>R</strong>entrer</td><td>entrare/rientrare</td></tr>
+<tr><td><strong>T</strong>omber / <strong>R</strong>etourner</td><td>cadere/ritornare</td></tr>
+<tr><td><strong>A</strong>rriver / <strong>M</strong>ourir / <strong>P</strong>artir</td><td>arrivare/morire/partire</td></tr>
+</table>
+<p style="margin-top:10px"><strong>+ Tutti i verbi pronominali</strong> (se laver, se lever...)</p>
+<h4>📝 Esempi</h4>
+<table class="grammar-table">
+<tr><th>Verbo</th><th>Ausiliare</th><th>Esempio</th></tr>
+<tr><td>Manger</td><td>avoir</td><td>J'<strong>ai mangé</strong> une pizza.</td></tr>
+<tr><td>Aller</td><td>être</td><td>Je <strong>suis allé</strong> au cinéma.</td></tr>
+<tr><td>Venir</td><td>être</td><td>Elle <strong>est venue</strong> hier.</td></tr>
+<tr><td>Se laver</td><td>être</td><td>Je <strong>me suis lavé(e)</strong>.</td></tr>
+</table>
+<div class="example-box" style="background:#ffe0e0">
+<strong>⚠️ Con ÊTRE il participio si accorda!</strong>
+<ul style="margin-left:20px;line-height:1.8">
+<li>Elle est allé<strong>e</strong> (femminile → +e)</li>
+<li>Ils sont allé<strong>s</strong> (plurale → +s)</li>
+<li>Elles sont allé<strong>es</strong> (femminile plurale → +es)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="g-imparfait" class="tab-content">
+<div class="card">
+<h3>⏪ L'Imparfait</h3>
+<p><strong>Uso:</strong> Abitudini nel passato, descrizioni, azioni in corso</p>
+<h4>📝 Formazione</h4>
+<p>Prendi la forma <strong>nous</strong> al présent, togli <strong>-ons</strong>, aggiungi:</p>
+<table class="grammar-table">
+<tr><th>Pronome</th><th>Desinenza</th><th>Esempio (parler)</th></tr>
+<tr><td>Je</td><td>-ais</td><td>Je parl<strong>ais</strong></td></tr>
+<tr><td>Tu</td><td>-ais</td><td>Tu parl<strong>ais</strong></td></tr>
+<tr><td>Il/Elle</td><td>-ait</td><td>Il parl<strong>ait</strong></td></tr>
+<tr><td>Nous</td><td>-ions</td><td>Nous parl<strong>ions</strong></td></tr>
+<tr><td>Vous</td><td>-iez</td><td>Vous parl<strong>iez</strong></td></tr>
+<tr><td>Ils/Elles</td><td>-aient</td><td>Ils parl<strong>aient</strong></td></tr>
+</table>
+<h4>🔄 Imparfait vs Passé Composé</h4>
+<table class="grammar-table">
+<tr><th>Imparfait (lunga)</th><th>Passé Composé (breve)</th></tr>
+<tr><td>Je <strong>dormais</strong> quand...</td><td>...le téléphone <strong>a sonné</strong></td></tr>
+<tr><td>Descrizione/sfondo</td><td>Azione specifica</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-futur" class="tab-content">
+<div class="card">
+<h3>🔮 Le Futur Simple</h3>
+<p><strong>Uso:</strong> Azioni future, progetti</p>
+<h4>📝 Formazione: Infinito + desinenze</h4>
+<table class="grammar-table">
+<tr><th>Pronome</th><th>Desinenza</th><th>parler</th></tr>
+<tr><td>Je</td><td>-ai</td><td>je parler<strong>ai</strong></td></tr>
+<tr><td>Tu</td><td>-as</td><td>tu parler<strong>as</strong></td></tr>
+<tr><td>Il/Elle</td><td>-a</td><td>il parler<strong>a</strong></td></tr>
+<tr><td>Nous</td><td>-ons</td><td>nous parler<strong>ons</strong></td></tr>
+<tr><td>Vous</td><td>-ez</td><td>vous parler<strong>ez</strong></td></tr>
+<tr><td>Ils/Elles</td><td>-ont</td><td>ils parler<strong>ont</strong></td></tr>
+</table>
+<h4>⚡ Radici irregolari</h4>
+<table class="grammar-table">
+<tr><th>Verbo</th><th>Radice</th><th>Je</th></tr>
+<tr><td>Être</td><td>ser-</td><td>je <strong>serai</strong></td></tr>
+<tr><td>Avoir</td><td>aur-</td><td>j'<strong>aurai</strong></td></tr>
+<tr><td>Aller</td><td>ir-</td><td>j'<strong>irai</strong></td></tr>
+<tr><td>Faire</td><td>fer-</td><td>je <strong>ferai</strong></td></tr>
+<tr><td>Venir</td><td>viendr-</td><td>je <strong>viendrai</strong></td></tr>
+<tr><td>Voir</td><td>verr-</td><td>je <strong>verrai</strong></td></tr>
+<tr><td>Vouloir</td><td>voudr-</td><td>je <strong>voudrai</strong></td></tr>
+<tr><td>Pouvoir</td><td>pourr-</td><td>je <strong>pourrai</strong></td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-conditionnel" class="tab-content">
+<div class="card">
+<h3>💭 Le Conditionnel</h3>
+<p><strong>Uso:</strong> Desideri, richieste cortesi, ipotesi</p>
+<h4>📝 Radice del futur + desinenze imparfait</h4>
+<table class="grammar-table">
+<tr><th>Uso</th><th>Esempio</th></tr>
+<tr><td>Richiesta cortese</td><td>Je <strong>voudrais</strong> un café, s'il vous plaît.</td></tr>
+<tr><td>Consiglio</td><td>Tu <strong>devrais</strong> étudier plus.</td></tr>
+<tr><td>Ipotesi</td><td>Si j'étais riche, je <strong>voyagerais</strong>.</td></tr>
+<tr><td>Desiderio</td><td>J'<strong>aimerais</strong> visiter la France.</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-pronoms" class="tab-content">
+<div class="card">
+<h3>👥 I Pronomi</h3>
+<h4>Pronomi soggetto</h4>
+<table class="grammar-table">
+<tr><th>Francese</th><th>Italiano</th></tr>
+<tr><td>Je / Tu / Il, Elle, On</td><td>Io / Tu / Lui, Lei, Si</td></tr>
+<tr><td>Nous / Vous / Ils, Elles</td><td>Noi / Voi / Loro (m/f)</td></tr>
+</table>
+<h4>Oggetto diretto (COD)</h4>
+<table class="grammar-table">
+<tr><th>Pronome</th><th>Esempio</th></tr>
+<tr><td>me/te/le,la/nous/vous/les</td><td>Je <strong>le</strong> vois. (Lo vedo)</td></tr>
+</table>
+<h4>Oggetto indiretto (COI)</h4>
+<table class="grammar-table">
+<tr><th>Pronome</th><th>Esempio</th></tr>
+<tr><td>me/te/lui/nous/vous/leur</td><td>Je <strong>lui</strong> parle. (Gli parlo)</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-articles" class="tab-content">
+<div class="card">
+<h3>📝 Les Articles</h3>
+<h4>Determinativi</h4>
+<table class="grammar-table">
+<tr><th>Articolo</th><th>Uso</th><th>Esempio</th></tr>
+<tr><td>le (l')</td><td>maschile</td><td><strong>Le</strong> livre</td></tr>
+<tr><td>la (l')</td><td>femminile</td><td><strong>La</strong> maison</td></tr>
+<tr><td>les</td><td>plurale</td><td><strong>Les</strong> enfants</td></tr>
+</table>
+<h4>Indeterminativi</h4>
+<table class="grammar-table">
+<tr><td>un / une / des</td><td>un/una/dei</td><td><strong>Un</strong> garçon, <strong>une</strong> fille</td></tr>
+</table>
+<h4>Partitivi (un po' di)</h4>
+<table class="grammar-table">
+<tr><td>du / de la / de l' / des</td><td>del/della/degli</td><td>Je mange <strong>du</strong> pain.</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-negation" class="tab-content">
+<div class="card">
+<h3>❌ La Négation</h3>
+<table class="grammar-table">
+<tr><th>Tipo</th><th>Struttura</th><th>Esempio</th></tr>
+<tr><td>Non</td><td>ne...pas</td><td>Je <strong>ne</strong> mange <strong>pas</strong>.</td></tr>
+<tr><td>Mai</td><td>ne...jamais</td><td>Il <strong>ne</strong> ment <strong>jamais</strong>.</td></tr>
+<tr><td>Più</td><td>ne...plus</td><td>Je <strong>ne</strong> fume <strong>plus</strong>.</td></tr>
+<tr><td>Niente</td><td>ne...rien</td><td>Je <strong>ne</strong> fais <strong>rien</strong>.</td></tr>
+<tr><td>Nessuno</td><td>ne...personne</td><td>Je <strong>ne</strong> vois <strong>personne</strong>.</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-comparatifs" class="tab-content">
+<div class="card">
+<h3>📊 Comparatifs</h3>
+<table class="grammar-table">
+<tr><th>Tipo</th><th>Struttura</th><th>Esempio</th></tr>
+<tr><td>Più...di</td><td>plus...que</td><td>Il est <strong>plus grand que</strong> moi.</td></tr>
+<tr><td>Meno...di</td><td>moins...que</td><td>Elle est <strong>moins grande que</strong> toi.</td></tr>
+<tr><td>Come</td><td>aussi...que</td><td>Il est <strong>aussi grand que</strong> Pierre.</td></tr>
+<tr><td>Il più</td><td>le/la plus</td><td>C'est <strong>le plus grand</strong>.</td></tr>
+</table>
+<h4>⚡ Irregolari</h4>
+<table class="grammar-table">
+<tr><td>bon (buono)</td><td>meilleur</td><td>le meilleur</td></tr>
+<tr><td>mauvais (cattivo)</td><td>pire</td><td>le pire</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-prepositions" class="tab-content">
+<div class="card">
+<h3>📍 Les Prépositions</h3>
+<table class="grammar-table">
+<tr><th>Preposizione</th><th>Uso</th><th>Esempio</th></tr>
+<tr><td>à</td><td>a (città)</td><td>Je vais <strong>à</strong> Paris.</td></tr>
+<tr><td>en</td><td>in (paesi fem.)</td><td>Je vais <strong>en</strong> France.</td></tr>
+<tr><td>au</td><td>a/in (paesi masc.)</td><td>Je vais <strong>au</strong> Canada.</td></tr>
+<tr><td>chez</td><td>a casa di</td><td>Je vais <strong>chez</strong> moi.</td></tr>
+<tr><td>dans</td><td>dentro</td><td>Dans la boîte.</td></tr>
+<tr><td>sur / sous</td><td>su / sotto</td><td>Sur la table.</td></tr>
+<tr><td>devant / derrière</td><td>davanti / dietro</td><td>Devant la porte.</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-participe" class="tab-content">
+<div class="card">
+<h3>📝 Le Participe Passé</h3>
+<h4>Regolari</h4>
+<table class="grammar-table">
+<tr><th>Gruppo</th><th>Desinenza</th><th>Esempio</th></tr>
+<tr><td>-ER</td><td>-é</td><td>parler → parlé</td></tr>
+<tr><td>-IR</td><td>-i</td><td>finir → fini</td></tr>
+<tr><td>-RE</td><td>-u</td><td>vendre → vendu</td></tr>
+</table>
+<h4>⚡ Irregolari comuni</h4>
+<table class="grammar-table">
+<tr><td>avoir → eu</td><td>être → été</td><td>faire → fait</td></tr>
+<tr><td>prendre → pris</td><td>voir → vu</td><td>lire → lu</td></tr>
+<tr><td>écrire → écrit</td><td>boire → bu</td><td>devoir → dû</td></tr>
+<tr><td>pouvoir → pu</td><td>vouloir → voulu</td><td>venir → venu</td></tr>
+<tr><td>aller → allé</td><td>naître → né</td><td>mourir → mort</td></tr>
+</table>
+</div>
+</div>
+
+<div id="g-pronominal" class="tab-content">
+<div class="card">
+<h3>🔄 Les Verbes Pronominaux</h3>
+<p><strong>Uso:</strong> Azioni riflessive</p>
+<h4>Al présent (se laver)</h4>
+<table class="grammar-table">
+<tr><td>Je <strong>me</strong> lave</td><td>Nous <strong>nous</strong> lavons</td></tr>
+<tr><td>Tu <strong>te</strong> laves</td><td>Vous <strong>vous</strong> lavez</td></tr>
+<tr><td>Il <strong>se</strong> lave</td><td>Ils <strong>se</strong> lavent</td></tr>
+</table>
+<h4>Al passé composé (sempre con ÊTRE!)</h4>
+<table class="grammar-table">
+<tr><td>Je me suis lavé(e).</td><td>Mi sono lavato/a.</td></tr>
+<tr><td>Elle s'est réveillée.</td><td>Si è svegliata.</td></tr>
+</table>
+<h4>🎯 Verbi pronominali comuni</h4>
+<ul style="margin-left:20px;line-height:1.8">
+<li>se lever (alzarsi), se coucher (coricarsi)</li>
+<li>s'habiller (vestirsi), se brosser les dents (lavarsi i denti)</li>
+<li>s'amuser (divertirsi), se promener (passeggiare)</li>
+<li>se dépêcher (sbrigarsi), s'appeler (chiamarsi)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- VOCABULARY -->
+<div id="vocabulary" class="section">
+<h2>🔤 Vocabolario</h2>
+<div class="tabs" id="vocabTabs">
+<button class="tab active" data-tab="v-famille">👨‍👩‍👧 Famiglia</button>
+<button class="tab" data-tab="v-ecole">🏫 Scuola</button>
+<button class="tab" data-tab="v-metiers">💼 Mestieri</button>
+<button class="tab" data-tab="v-loisirs">🎨 Tempo libero</button>
+<button class="tab" data-tab="v-nourriture">🥐 Cibo</button>
+<button class="tab" data-tab="v-voyages">✈️ Viaggi</button>
+<button class="tab" data-tab="v-ville">🏙 Città</button>
+<button class="tab" data-tab="v-meteo">🌤 Meteo</button>
+<button class="tab" data-tab="v-vetements">👗 Vestiti</button>
+<button class="tab" data-tab="v-corps">👤 Corpo</button>
+<button class="tab" data-tab="v-emotions">😊 Emozioni</button>
+<button class="tab" data-tab="v-maison">🏠 Casa</button>
+<button class="tab" data-tab="v-animaux">🐾 Animali</button>
+<button class="tab" data-tab="v-nombres">🔢 Numeri</button>
+</div>
+
+<div id="v-famille" class="tab-content active">
+<div class="card">
+<h3>👨‍👩‍👧 La Famille</h3>
+<table class="grammar-table">
+<tr><th>Français</th><th>Italiano</th></tr>
+<tr><td>le père / la mère</td><td>il padre / la madre</td></tr>
+<tr><td>les parents</td><td>i genitori</td></tr>
+<tr><td>le frère / la sœur</td><td>il fratello / la sorella</td></tr>
+<tr><td>le fils / la fille</td><td>il figlio / la figlia</td></tr>
+<tr><td>le grand-père / la grand-mère</td><td>il nonno / la nonna</td></tr>
+<tr><td>l'oncle (m.) / la tante</td><td>lo zio / la zia</td></tr>
+<tr><td>le cousin / la cousine</td><td>il cugino / la cugina</td></tr>
+<tr><td>le mari / la femme</td><td>il marito / la moglie</td></tr>
+<tr><td>le bébé / l'enfant (m.)</td><td>il bebè / il bambino</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-ecole" class="tab-content">
+<div class="card">
+<h3>🏫 L'École</h3>
+<h4>Materie</h4>
+<table class="grammar-table">
+<tr><td>le français / les maths</td><td>francese / matematica</td></tr>
+<tr><td>l'histoire (f.) / la géographie</td><td>storia / geografia</td></tr>
+<tr><td>les sciences / l'anglais (m.)</td><td>scienze / inglese</td></tr>
+<tr><td>l'EPS / les arts / la musique</td><td>educazione fisica / arte / musica</td></tr>
+</table>
+<h4>Oggetti</h4>
+<table class="grammar-table">
+<tr><td>le livre / le cahier</td><td>libro / quaderno</td></tr>
+<tr><td>le stylo / le crayon</td><td>penna / matita</td></tr>
+<tr><td>la gomme / la règle</td><td>gomma / righello</td></tr>
+<tr><td>le sac à dos / la trousse</td><td>zaino / astuccio</td></tr>
+<tr><td>le professeur / l'élève (m.)</td><td>professore / alunno</td></tr>
+<tr><td>les devoirs / l'examen (m.)</td><td>compiti / esame</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-metiers" class="tab-content">
+<div class="card">
+<h3>💼 Les Métiers</h3>
+<table class="grammar-table">
+<tr><td>le médecin</td><td>medico</td></tr>
+<tr><td>le professeur</td><td>professore</td></tr>
+<tr><td>l'avocat (m.)</td><td>avvocato</td></tr>
+<tr><td>le boulanger / le boucher</td><td>fornaio / macellaio</td></tr>
+<tr><td>le cuisinier</td><td>cuoco</td></tr>
+<tr><td>le policier / le pompier</td><td>poliziotto / pompiere</td></tr>
+<tr><td>l'infirmier (m.)</td><td>infermiere</td></tr>
+<tr><td>le vendeur / le journaliste</td><td>commesso / giornalista</td></tr>
+<tr><td>l'acteur / le chanteur</td><td>attore / cantante</td></tr>
+<tr><td>l'ingénieur / l'architecte</td><td>ingegnere / architetto</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-loisirs" class="tab-content">
+<div class="card">
+<h3>🎨 Les Loisirs</h3>
+<table class="grammar-table">
+<tr><td>jouer au football / basket / tennis</td><td>giocare a calcio/basket/tennis</td></tr>
+<tr><td>nager / faire du vélo</td><td>nuotare / andare in bici</td></tr>
+<tr><td>lire / écouter de la musique</td><td>leggere / ascoltare musica</td></tr>
+<tr><td>regarder la télé</td><td>guardare la TV</td></tr>
+<tr><td>dessiner / peindre / chanter / danser</td><td>disegnare / dipingere / cantare / ballare</td></tr>
+<tr><td>jouer de la guitare / du piano</td><td>suonare la chitarra / il piano</td></tr>
+<tr><td>se promener / voyager</td><td>passeggiare / viaggiare</td></tr>
+<tr><td>faire des photos / du shopping</td><td>fare foto / shopping</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-nourriture" class="tab-content">
+<div class="card">
+<h3>🥐 La Nourriture</h3>
+<table class="grammar-table">
+<tr><td>le pain / le fromage / le beurre</td><td>pane / formaggio / burro</td></tr>
+<tr><td>la confiture / le croissant / la baguette</td><td>marmellata / croissant / baguette</td></tr>
+<tr><td>le poulet / le bœuf / le poisson</td><td>pollo / manzo / pesce</td></tr>
+<tr><td>les légumes / les fruits</td><td>verdure / frutta</td></tr>
+<tr><td>la pomme / la banane / l'orange</td><td>mela / banana / arancia</td></tr>
+<tr><td>la tomate / la pomme de terre</td><td>pomodoro / patata</td></tr>
+<tr><td>la salade / la soupe</td><td>insalata / zuppa</td></tr>
+<tr><td>le gâteau / la glace / le chocolat</td><td>torta / gelato / cioccolato</td></tr>
+<tr><td>l'eau / le lait / le jus</td><td>acqua / latte / succo</td></tr>
+<tr><td>le café / le thé / le vin</td><td>caffè / tè / vino</td></tr>
+<tr><td>le petit-déjeuner / le déjeuner / le dîner</td><td>colazione / pranzo / cena</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-voyages" class="tab-content">
+<div class="card">
+<h3>✈️ Les Voyages</h3>
+<table class="grammar-table">
+<tr><td>le train / le bus / la voiture</td><td>treno / autobus / macchina</td></tr>
+<tr><td>le vélo / l'avion (m.) / le bateau</td><td>bici / aereo / barca</td></tr>
+<tr><td>le métro / le tramway / le taxi</td><td>metropolitana / tram / taxi</td></tr>
+<tr><td>le billet / le quai / la gare</td><td>biglietto / binario / stazione</td></tr>
+<tr><td>l'aéroport / le passeport</td><td>aeroporto / passaporto</td></tr>
+<tr><td>la valise / le retard</td><td>valigia / ritardo</td></tr>
+<tr><td>le départ / l'arrivée (f.)</td><td>partenza / arrivo</td></tr>
+<tr><td>l'hôtel / la plage / la montagne</td><td>hotel / spiaggia / montagna</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-ville" class="tab-content">
+<div class="card">
+<h3>🏙 La Ville</h3>
+<table class="grammar-table">
+<tr><td>la banque / le supermarché</td><td>banca / supermercato</td></tr>
+<tr><td>le cinéma / le musée</td><td>cinema / museo</td></tr>
+<tr><td>l'école / l'hôpital (m.)</td><td>scuola / ospedale</td></tr>
+<tr><td>le parc / la bibliothèque</td><td>parco / biblioteca</td></tr>
+<tr><td>la poste / la pharmacie</td><td>poste / farmacia</td></tr>
+<tr><td>le restaurant / le café</td><td>ristorante / caffè</td></tr>
+<tr><td>l'église / le stade</td><td>chiesa / stadio</td></tr>
+<tr><td>la piscine / le marché</td><td>piscina / mercato</td></tr>
+<tr><td>la rue / la place</td><td>via / piazza</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-meteo" class="tab-content">
+<div class="card">
+<h3>🌤 La Météo</h3>
+<table class="grammar-table">
+<tr><td>Il fait beau / soleil</td><td>Fa bel tempo / c'è il sole</td></tr>
+<tr><td>Il fait chaud / froid</td><td>Fa caldo / freddo</td></tr>
+<tr><td>Il fait doux / frais</td><td>Fa tiepido / fresco</td></tr>
+<tr><td>Il pleut / Il neige</td><td>Piove / Nevica</td></tr>
+<tr><td>Il y a du vent / des nuages</td><td>C'è vento / nuvoloso</td></tr>
+<tr><td>Il y a du brouillard / de l'orage</td><td>C'è nebbia / temporale</td></tr>
+<tr><td>le printemps / l'été (m.)</td><td>primavera / estate</td></tr>
+<tr><td>l'automne (m.) / l'hiver (m.)</td><td>autunno / inverno</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-vetements" class="tab-content">
+<div class="card">
+<h3>👗 Les Vêtements</h3>
+<table class="grammar-table">
+<tr><td>le pantalon / le jean</td><td>pantaloni / jeans</td></tr>
+<tr><td>la chemise / le t-shirt</td><td>camicia / maglietta</td></tr>
+<tr><td>le pull / la robe / la jupe</td><td>maglione / vestito / gonna</td></tr>
+<tr><td>le manteau / la veste</td><td>cappotto / giacca</td></tr>
+<tr><td>les chaussures / les baskets</td><td>scarpe / sneakers</td></tr>
+<tr><td>les chaussettes / le chapeau</td><td>calzini / cappello</td></tr>
+<tr><td>l'écharpe / les gants</td><td>sciarpa / guanti</td></tr>
+<tr><td>le sac / les lunettes</td><td>borsa / occhiali</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-corps" class="tab-content">
+<div class="card">
+<h3>👤 Le Corps</h3>
+<table class="grammar-table">
+<tr><td>la tête / les cheveux / le visage</td><td>testa / capelli / viso</td></tr>
+<tr><td>les yeux / le nez / la bouche</td><td>occhi / naso / bocca</td></tr>
+<tr><td>les oreilles / les dents</td><td>orecchie / denti</td></tr>
+<tr><td>le cou / l'épaule / le bras</td><td>collo / spalla / braccio</td></tr>
+<tr><td>la main / le doigt</td><td>mano / dito</td></tr>
+<tr><td>la poitrine / le ventre / le dos</td><td>petto / pancia / schiena</td></tr>
+<tr><td>la jambe / le pied / le cœur</td><td>gamba / piede / cuore</td></tr>
+</table>
+<h4>Aggettivi</h4>
+<table class="grammar-table">
+<tr><td>grand / petit / mince / gros</td><td>alto / basso / magro / grasso</td></tr>
+<tr><td>jeune / vieux / beau(belle)</td><td>giovane / vecchio / bello</td></tr>
+<tr><td>blond / brun / bouclé / lisse</td><td>biondo / castano / riccio / liscio</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-emotions" class="tab-content">
+<div class="card">
+<h3>😊 Les Émotions</h3>
+<table class="grammar-table">
+<tr><td>content(e) / heureux(euse)</td><td>felice</td></tr>
+<tr><td>triste</td><td>triste</td></tr>
+<tr><td>en colère</td><td>arrabbiato</td></tr>
+<tr><td>excité(e) / ennuyé(e)</td><td>eccitato / annoiato</td></tr>
+<tr><td>fatigué(e) / effrayé(e)</td><td>stanco / spaventato</td></tr>
+<tr><td>surpris(e) / inquiet(ète)</td><td>sorpreso / preoccupato</td></tr>
+<tr><td>fier(ère) / embarrassé(e)</td><td>orgoglioso / imbarazzato</td></tr>
+<tr><td>déçu(e) / calme / nerveux(euse)</td><td>deluso / calmo / nervoso</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-maison" class="tab-content">
+<div class="card">
+<h3>🏠 La Maison</h3>
+<h4>Stanze</h4>
+<table class="grammar-table">
+<tr><td>la cuisine / la salle de bains</td><td>cucina / bagno</td></tr>
+<tr><td>la chambre / le salon</td><td>camera / salotto</td></tr>
+<tr><td>la salle à manger / le grenier</td><td>sala da pranzo / soffitta</td></tr>
+<tr><td>la cave / le jardin / le balcon</td><td>cantina / giardino / balcone</td></tr>
+</table>
+<h4>Mobili</h4>
+<table class="grammar-table">
+<tr><td>le lit / la table / la chaise</td><td>letto / tavolo / sedia</td></tr>
+<tr><td>le canapé / l'armoire</td><td>divano / armadio</td></tr>
+<tr><td>le bureau / la lampe</td><td>scrivania / lampada</td></tr>
+<tr><td>le miroir / le tapis / le rideau</td><td>specchio / tappeto / tenda</td></tr>
+<tr><td>le réfrigérateur / le four</td><td>frigo / forno</td></tr>
+<tr><td>la machine à laver</td><td>lavatrice</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-animaux" class="tab-content">
+<div class="card">
+<h3>🐾 Les Animaux</h3>
+<table class="grammar-table">
+<tr><td>le chien / le chat</td><td>cane / gatto</td></tr>
+<tr><td>l'oiseau / le poisson</td><td>uccello / pesce</td></tr>
+<tr><td>le cheval / la vache</td><td>cavallo / mucca</td></tr>
+<tr><td>le mouton / le cochon</td><td>pecora / maiale</td></tr>
+<tr><td>le lapin / le lion / le tigre</td><td>coniglio / leone / tigre</td></tr>
+<tr><td>l'éléphant / le singe / l'ours</td><td>elefante / scimmia / orso</td></tr>
+<tr><td>le loup / le renard</td><td>lupo / volpe</td></tr>
+<tr><td>la souris / le serpent</td><td>topo / serpente</td></tr>
+</table>
+</div>
+</div>
+
+<div id="v-nombres" class="tab-content">
+<div class="card">
+<h3>🔢 Les Nombres</h3>
+<table class="grammar-table">
+<tr><th>N°</th><th>Français</th><th>N°</th><th>Français</th></tr>
+<tr><td>0-10</td><td>zéro, un, deux, trois, quatre, cinq, six, sept, huit, neuf, dix</td><td></td><td></td></tr>
+<tr><td>11-16</td><td>onze, douze, treize, quatorze, quinze, seize</td><td></td><td></td></tr>
+<tr><td>17-19</td><td>dix-sept, dix-huit, dix-neuf</td><td></td><td></td></tr>
+<tr><td>20,30,40,50,60</td><td>vingt, trente, quarante, cinquante, soixante</td><td></td><td></td></tr>
+<tr><td>70</td><td>soixante-dix (60+10)</td><td>71</td><td>soixante et onze</td></tr>
+<tr><td>80</td><td>quatre-vingts (4×20)</td><td>81</td><td>quatre-vingt-un</td></tr>
+<tr><td>90</td><td>quatre-vingt-dix (4×20+10)</td><td>91</td><td>quatre-vingt-onze</td></tr>
+<tr><td>100</td><td>cent</td><td>1000</td><td>mille</td></tr>
+<tr><td>1 000 000</td><td>un million</td><td></td><td></td></tr>
+</table>
+<div class="example-box">
+<strong>⚠️ Attenzione:</strong> 70, 80, 90 sono speciali! 70=60+10, 80=4×20, 90=4×20+10
+</div>
+</div>
+</div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="flashcards" class="section">
+<h2>🎴 Flashcard</h2>
+<div class="card">
+<h3>📚 Scegli una Categoria</h3>
+<div class="tabs" id="flashcardCategories">
+<button class="tab active" data-cat="all">🎲 Tutte</button>
+<button class="tab" data-cat="famille">Famiglia</button>
+<button class="tab" data-cat="ecole">Scuola</button>
+<button class="tab" data-cat="metiers">Mestieri</button>
+<button class="tab" data-cat="loisirs">Tempo libero</button>
+<button class="tab" data-cat="nourriture">Cibo</button>
+<button class="tab" data-cat="voyages">Viaggi</button>
+<button class="tab" data-cat="ville">Città</button>
+<button class="tab" data-cat="meteo">Meteo</button>
+<button class="tab" data-cat="vetements">Vestiti</button>
+<button class="tab" data-cat="corps">Corpo</button>
+<button class="tab" data-cat="emotions">Emozioni</button>
+<button class="tab" data-cat="maison">Casa</button>
+<button class="tab" data-cat="animaux">Animali</button>
+<button class="tab" data-cat="erreurs">❌ Errori</button>
+</div>
+<div id="flashcardProgress" style="text-align:center;font-size:1.1em;margin:10px 0"></div>
+<div class="flashcard-container">
+<div class="flashcard" id="flashcard" onclick="flipFlashcard()">
+<div class="flashcard-inner">
+<div class="flashcard-front">
+<div class="flashcard-emoji" id="fcEmoji">🎯</div>
+<div class="flashcard-text" id="fcFront">Clicca una categoria</div>
+</div>
+<div class="flashcard-back">
+<div class="flashcard-text" id="fcBack">Traduzione</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flashcard-controls">
+<button class="btn btn-danger" onclick="markFlashcard(false)">❌ Non so</button>
+<button class="btn btn-success" onclick="markFlashcard(true)">✅ Lo so!</button>
+<button class="btn" onclick="nextFlashcard()">➡️ Prossima</button>
+</div>
+</div>
+</div>
+
+<!-- VERBS -->
+<div id="verbs" class="section">
+<h2>⚡ Verbi Irregolari</h2>
+<div class="card">
+<input type="text" class="input-field" id="verbSearch" placeholder="🔍 Cerca un verbo..." oninput="filterVerbs()">
+<div class="tabs">
+<button class="tab active" onclick="showVerbMode('list')">📋 Lista</button>
+<button class="tab" onclick="showVerbMode('flashcard')">🎴 Flashcard</button>
+<button class="tab" onclick="showVerbMode('quiz')">🎯 Quiz</button>
+</div>
+<div id="verbListMode">
+<table class="grammar-table">
+<thead><tr><th>Infinito</th><th>Participio Passato</th><th>Ausiliare</th><th>Italiano</th></tr></thead>
+<tbody id="verbTableBody"></tbody>
+</table>
+</div>
+<div id="verbFlashcardMode" style="display:none">
+<div class="flashcard-container">
+<div class="flashcard" id="verbFlashcard" onclick="flipVerbFlashcard()">
+<div class="flashcard-inner">
+<div class="flashcard-front"><div class="flashcard-text" id="verbFcFront">aller</div></div>
+<div class="flashcard-back"><div class="flashcard-text" id="verbFcBack">allé (être)</div></div>
+</div>
+</div>
+</div>
+<div class="flashcard-controls">
+<button class="btn" onclick="prevVerbFlashcard()">⬅️</button>
+<button class="btn" onclick="nextVerbFlashcard()">➡️</button>
+</div>
+</div>
+<div id="verbQuizMode" style="display:none">
+<div class="quiz-container">
+<div class="quiz-question" id="verbQuizQuestion"></div>
+<input type="text" class="input-field" id="verbQuizAnswer" placeholder="Scrivi la risposta...">
+<button class="btn btn-success" onclick="checkVerbAnswer()">✅ Controlla</button>
+<button class="btn" onclick="nextVerbQuiz()">➡️ Prossimo</button>
+<div id="verbQuizFeedback" style="margin-top:15px;font-weight:bold"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CONJUGATION -->
+<div id="conjugation" class="section">
+<h2>🔄 Coniugazioni</h2>
+<div class="card">
+<h3>🎯 Scegli un verbo e un tempo</h3>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px">
+<select id="conjVerb" class="input-field" style="max-width:200px">
+<option value="etre">être</option>
+<option value="avoir">avoir</option>
+<option value="aller">aller</option>
+<option value="faire">faire</option>
+<option value="venir">venir</option>
+<option value="vouloir">vouloir</option>
+<option value="pouvoir">pouvoir</option>
+<option value="savoir">savoir</option>
+<option value="prendre">prendre</option>
+<option value="voir">voir</option>
+<option value="parler">parler</option>
+<option value="finir">finir</option>
+<option value="vendre">vendre</option>
+</select>
+<select id="conjTense" class="input-field" style="max-width:200px">
+<option value="present">Présent</option>
+<option value="passe">Passé Composé</option>
+<option value="imparfait">Imparfait</option>
+<option value="futur">Futur Simple</option>
+<option value="conditionnel">Conditionnel</option>
+</select>
+<button class="btn btn-success" onclick="showConjugation()">🔄 Coniuga!</button>
+</div>
+<div id="conjResult"></div>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+<h2>🎯 Quiz Interattivo</h2>
+<div class="card">
+<h3>Scegli un Quiz</h3>
+<div class="tabs">
+<button class="tab active" onclick="startQuiz('grammar')">📖 Grammatica</button>
+<button class="tab" onclick="startQuiz('vocabulary')">🔤 Vocabolario</button>
+<button class="tab" onclick="startQuiz('conjugation')">🔄 Coniugazioni</button>
+<button class="tab" onclick="startQuiz('functions')">💬 Funzioni</button>
+<button class="tab" onclick="startQuiz('mixed')">🎲 Misto</button>
+</div>
+<div id="quizContainer">
+<div class="quiz-container">
+<div style="text-align:center;margin-bottom:15px">
+<strong>Punti: <span id="quizScore">0</span></strong> |
+<strong>Domanda: <span id="quizNum">1</span> / <span id="quizTotal">10</span></strong>
+</div>
+<div class="quiz-question" id="quizQuestion">Scegli un quiz per iniziare!</div>
+<div class="quiz-options" id="quizOptions"></div>
+<div id="quizFeedback" style="margin-top:15px;font-weight:bold"></div>
+<div style="margin-top:15px;text-align:center">
+<button class="btn" id="nextQuizBtn" onclick="nextQuiz()" style="display:none">PROSSIMA →</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SPEAKING -->
+<div id="speaking" class="section">
+<h2>🗣️ Speaking Trainer</h2>
+<div class="card">
+<h3>Scegli un Argomento</h3>
+<div class="tabs">
+<button class="tab active" onclick="showSpeaking('famille')">👨‍👩‍👧 Ma Famille</button>
+<button class="tab" onclick="showSpeaking('ville')">🏙 Ma Ville</button>
+<button class="tab" onclick="showSpeaking('vacances')">🏖 Mes Vacances</button>
+<button class="tab" onclick="showSpeaking('ecole')">🏫 Mon École</button>
+<button class="tab" onclick="showSpeaking('film')">🎬 Mon Film Préféré</button>
+<button class="tab" onclick="showSpeaking('sport')">⚽ Mon Sport Préféré</button>
+</div>
+<div id="speakingContent"></div>
+</div>
+</div>
+
+<!-- PHOTOS -->
+<div id="photos" class="section">
+<h2>📷 Photo Description</h2>
+<div class="card">
+<h3>Scegli una Categoria</h3>
+<div class="tabs">
+<button class="tab active" onclick="showPhotoCategory('people')">👥 Personnes</button>
+<button class="tab" onclick="showPhotoCategory('city')">🏙 Ville</button>
+<button class="tab" onclick="showPhotoCategory('ecole')">🏫 École</button>
+<button class="tab" onclick="showPhotoCategory('vacances')">🏖 Vacances</button>
+<button class="tab" onclick="showPhotoCategory('sports')">⚽ Sports</button>
+<button class="tab" onclick="showPhotoCategory('animaux')">🐾 Animaux</button>
+</div>
+<div class="photo-grid" id="photoGrid"></div>
+<div id="photoTrainer" style="display:none;margin-top:20px">
+<div class="card">
+<h3>📸 Décris cette photo!</h3>
+<div id="photoDisplay" style="text-align:center;font-size:5em;margin:20px 0"></div>
+<div class="example-box">
+<strong>💡 Usa queste frasi:</strong>
+<ul style="margin-left:20px;line-height:1.8">
+<li>Dans cette image, je vois...</li>
+<li>Il y a / Il n'y a pas...</li>
+<li>Au premier plan / À l'arrière-plan...</li>
+<li>À gauche / À droite...</li>
+<li>Ils portent... / Ils sont en train de...</li>
+<li>Il fait beau / mauvais...</li>
+</ul>
+</div>
+<textarea class="input-field" id="photoDescription" placeholder="Scrivi in francese..."></textarea>
+<button class="btn btn-success" onclick="checkPhotoDescription()">✅ Controlla</button>
+<button class="btn" onclick="closePhotoTrainer()">❌ Chiudi</button>
+<div id="photoFeedback" style="margin-top:15px"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TRAIN -->
+<div id="train" class="section">
+<h2>🚂 À la Gare</h2>
+<div class="card">
+<h3>Modalità</h3>
+<div class="tabs">
+<button class="tab active" onclick="showTrainMode('listen')">🎧 Ascolta</button>
+<button class="tab" onclick="showTrainMode('roleplay')">🎭 Role Play</button>
+</div>
+<div id="trainContent"></div>
+</div>
+</div>
+
+<!-- RESTAURANT -->
+<div id="restaurant" class="section">
+<h2>🥐 Au Restaurant</h2>
+<div class="card">
+<h3>🍽️ Menu</h3>
+<div class="dashboard-grid">
+<div class="dashboard-card"><h4>🥗 Entrées</h4><p>Salade - €6<br>Soupe - €5</p></div>
+<div class="dashboard-card"><h4>🍝 Plats</h4><p>Poulet - €12<br>Poisson - €14<br>Pâtes - €10</p></div>
+<div class="dashboard-card"><h4>🍰 Desserts</h4><p>Crème brûlée - €6<br>Glace - €4</p></div>
+<div class="dashboard-card"><h4>🥤 Boissons</h4><p>Eau - €3<br>Vin - €6<br>Café - €3</p></div>
+</div>
+<h3>🎭 Ordina</h3>
+<div class="dialogue" id="restaurantDialogue"></div>
+<div id="restaurantInput">
+<input type="text" class="input-field" id="restaurantAnswer" placeholder="Rispondi in francese...">
+<button class="btn btn-success" onclick="checkRestaurantAnswer()">✅ Invia</button>
+<button class="btn" onclick="showRestaurantHint()">💡 Suggerimento</button>
+</div>
+<div id="restaurantFeedback" style="margin-top:15px"></div>
+<button class="btn btn-warning" onclick="restartRestaurant()" style="margin-top:10px">🔄 Ricomincia</button>
+</div>
+</div>
+
+<!-- DIRECTIONS -->
+<div id="directions" class="section">
+<h2>🗺️ Demander son chemin</h2>
+<div class="card">
+<h3>🏙️ Mappa</h3>
+<div class="map-container">
+<div class="map-road" style="top:48%;left:0;width:100%;height:20px"></div>
+<div class="map-road" style="top:0;left:48%;width:20px;height:100%"></div>
+<div class="map-place" style="top:10%;left:10%">🏦 Banque</div>
+<div class="map-place" style="top:10%;left:70%">🛒 Supermarché</div>
+<div class="map-place" style="top:70%;left:10%">🎬 Cinéma</div>
+<div class="map-place" style="top:70%;left:70%">🏛️ Musée</div>
+<div class="map-place" style="top:40%;left:40%">🏫 École</div>
+<div class="map-place" style="top:40%;left:75%">🏥 Hôpital</div>
+<div class="map-place" style="top:80%;left:45%">🌳 Parc</div>
+</div>
+<h3>🎯 Indicazioni</h3>
+<div id="directionsQuestion"></div>
+<div id="directionsOptions"></div>
+<div id="directionsFeedback" style="margin-top:15px"></div>
+<button class="btn" onclick="newDirectionsQuestion()">🔄 Nuova Domanda</button>
+</div>
+</div>
+
+<!-- DIARY -->
+<div id="diary" class="section">
+<h2>📔 Journal de Vacances</h2>
+<div class="card">
+<h3>📅 Scrivi in Francese</h3>
+<div class="tabs">
+<button class="tab active" onclick="showDiaryMode('daily')">📝 Oggi</button>
+<button class="tab" onclick="showDiaryMode('weekly')">📊 Settimana</button>
+<button class="tab" onclick="showDiaryMode('read')">📖 I Miei Diari</button>
+</div>
+<div id="diaryContent"></div>
+</div>
+</div>
+
+<!-- MISSIONS -->
+<div id="missions" class="section">
+<h2>🎮 Missioni</h2>
+<div class="card">
+<h3>🎯 Missioni Giornaliere</h3>
+<div id="missionsList"></div>
+<button class="btn btn-warning" onclick="refreshMissions()">🔄 Rigenera</button>
+</div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="achievements" class="section">
+<h2>🏆 Trofei</h2>
+<div class="card">
+<h3>🎖️ I Tuoi Trofei</h3>
+<div id="achievementsList"></div>
+</div>
+</div>
+
+<!-- EXAMS -->
+<div id="exams" class="section">
+<h2>📝 Esami</h2>
+<div class="card">
+<h3>📋 Scegli l'Esame</h3>
+<div class="dashboard-grid">
+<div class="dashboard-card">
+<h4>📅 Luglio</h4><p>Grammatica base</p>
+<button class="btn" onclick="startExam('july')">▶️ Inizia</button>
+<div id="examJulyResult"></div>
+</div>
+<div class="dashboard-card">
+<h4>📅 Agosto</h4><p>Grammatica + Vocabolario</p>
+<button class="btn" onclick="startExam('august')">▶️ Inizia</button>
+<div id="examAugustResult"></div>
+</div>
+<div class="dashboard-card">
+<h4>📅 Finale</h4><p>Tutto il programma</p>
+<button class="btn" onclick="startExam('final')">▶️ Inizia</button>
+<div id="examFinalResult"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PLAN -->
+<div id="plan" class="section">
+<h2>📅 Piano Estate</h2>
+<div class="card">
+<h3>🇫🇷 Obiettivo: 5 → 7+ entro settembre!</h3>
+<div class="card" style="background:#e8f5e9">
+<h4>1️⃣ Settimane 1-2: Base</h4>
+<ul style="margin-left:20px;line-height:1.8">
+<li>✅ Présent dei verbi -ER, -IR, -RE</li>
+<li>✅ être, avoir, aller, faire</li>
+<li>✅ Articoli e genere dei sostantivi</li>
+</ul>
+</div>
+<div class="card" style="background:#fff3cd">
+<h4>2️⃣ Settimane 3-4: Passato</h4>
+<ul style="margin-left:20px;line-height:1.8">
+<li>✅ Passé Composé con avoir e être</li>
+<li>✅ Participi passati irregolari</li>
+<li>✅ Vocabolario: famiglia, scuola, cibo</li>
+</ul>
+</div>
+<div class="card" style="background:#f8d7da">
+<h4>3️⃣ Settimane 5-6: Tempi</h4>
+<ul style="margin-left:20px;line-height:1.8">
+<li>✅ Imparfait vs Passé Composé</li>
+<li>✅ Futur Simple e Conditionnel</li>
+<li>✅ Verbi pronominali, Négation</li>
+<li>✅ Simulatori: treno, ristorante</li>
+</ul>
+</div>
+<div class="card" style="background:#d1ecf1">
+<h4>4️⃣ Settimane 7-8: Revisione</h4>
+<ul style="margin-left:20px;line-height:1.8">
+<li>✅ Ripasso generale</li>
+<li>✅ Quiz ogni giorno</li>
+<li>✅ Simulazione interrogazione</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- AI TUTOR -->
+<div id="tutor" class="section">
+<h2>🤖 AI Tutor</h2>
+<div class="card">
+<h3>🇫🇷 Chiedimi qualsiasi cosa!</h3>
+<div id="tutorChat" style="background:#f8f9fa;border:3px solid #333;border-radius:10px;padding:15px;min-height:300px;max-height:500px;overflow-y:auto;margin:15px 0">
+<div class="dialogue-line customer">🇫🇷 Tutor: Bonjour Matteo! Scrivimi una domanda in italiano o francese!</div>
+</div>
+<div style="display:flex;gap:10px">
+<input type="text" class="input-field" id="tutorInput" placeholder="Scrivi la tua domanda..." onkeypress="if(event.key==='Enter')sendTutorMessage()">
+<button class="btn btn-success" onclick="sendTutorMessage()">INVIA ↗</button>
+</div>
+</div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ============ DATI ============
+const LEVELS = [
+{name:"Débutant",xp:0},{name:"Explorateur",xp:100},{name:"Étudiant",xp:300},
+{name:"Locuteur",xp:600},{name:"Champion",xp:1000},{name:"French Hero",xp:1500},
+{name:"French Master",xp:2500},{name:"French Légende",xp:4000}
+];
+
+const ACHIEVEMENTS = [
+{id:"first_quiz",name:"Premier Quiz",icon:"🎯",desc:"Completa 1 quiz",cond:s=>s.quizzesCompleted>=1},
+{id:"quiz_10",name:"Quiz Master",icon:"🏆",desc:"Completa 10 quiz",cond:s=>s.quizzesCompleted>=10},
+{id:"streak_3",name:"Constant",icon:"🔥",desc:"Streak 3 giorni",cond:s=>s.streak>=3},
+{id:"streak_7",name:"Engagé",icon:"💪",desc:"Streak 7 giorni",cond:s=>s.streak>=7},
+{id:"flashcards_50",name:"Mémoire",icon:"🎴",desc:"50 flashcard",cond:s=>s.flashcardsStudied>=50},
+{id:"verbs_50",name:"Verbe Roi",icon:"⚡",desc:"50 verbi",cond:s=>s.verbsStudied>=50},
+{id:"missions_10",name:"Héros",icon:"🎮",desc:"10 missioni",cond:s=>s.missionsCompleted>=10},
+{id:"speaking_6",name:"Orateur",icon:"🗣️",desc:"6 speaking",cond:s=>s.speakingTopics>=6},
+{id:"photos_10",name:"Photographe",icon:"📷",desc:"10 foto",cond:s=>s.photosDescribed>=10},
+{id:"train_master",name:"Voyageur",icon:"🚂",desc:"Simulatore treno",cond:s=>s.trainCompleted},
+{id:"restaurant_master",name:"Chef",icon:"🥐",desc:"Simulatore ristorante",cond:s=>s.restaurantCompleted}
+];
+
+const DAILY_TIPS = [
+"💡 'Je suis' = Io sono. 'J'ai' = Io ho. AVOIR per: j'ai faim/soif/froid/chaud!",
+"💡 Passé Composé: verbi di movimento usano ÊTRE (je SUIS allé). Altri AVOIR (j'AI mangé).",
+"💡 Con ÊTRE al passato il participio si accorda: Elle est alléE, Ils sont alléS.",
+"💡 Numeri strani: 70=soixante-dix, 80=quatre-vingts, 90=quatre-vingt-dix.",
+"💡 Paesi femminili → EN (en France). Maschili → AU (au Canada).",
+"💡 'Chez' = a casa di: chez moi, chez Pierre.",
+"💡 Imparfait: forma 'nous' al présent - ons + -ais,-ais,-ait,-ions,-iez,-aient.",
+"💡 Indicazioni: 'Excusez-moi, où est la gare, s'il vous plaît?'",
+"💡 Foto: 'Dans cette image, je vois...', 'Il y a...', 'Au premier plan...'",
+"💡 Verbi pronominali al passato SEMPRE être: Je me suis lavé(e).",
+"💡 Négation: ne + verbo + pas. Con pronominali: Je ne me lave pas.",
+"💡 Ristorante: 'Je voudrais..., s'il vous plaît.' (condizionale = cortesia)",
+"💡 Comparativo: plus...que / moins...que / aussi...que.",
+"💡 Futur: infinito + -ai,-as,-a,-ons,-ez,-ont.",
+"💡 Partitivo: du (m.), de la (f.), de l' (vocale), des (pl.)."
+];
+
+const IRREGULAR_VERBS = [
+["être","été","être","essere"],["avoir","eu","avoir","avere"],["aller","allé","être","andare"],
+["faire","fait","avoir","fare"],["venir","venu","être","venire"],["vouloir","voulu","avoir","volere"],
+["pouvoir","pu","avoir","potere"],["savoir","su","avoir","sapere"],["prendre","pris","avoir","prendere"],
+["voir","vu","avoir","vedere"],["dire","dit","avoir","dire"],["écrire","écrit","avoir","scrivere"],
+["lire","lu","avoir","leggere"],["mettre","mis","avoir","mettere"],["partir","parti","être","partire"],
+["sortir","sorti","être","uscire"],["dormir","dormi","avoir","dormire"],["courir","couru","avoir","correre"],
+["boire","bu","avoir","bere"],["connaître","connu","avoir","conoscere"],["devoir","dû","avoir","dovere"],
+["recevoir","reçu","avoir","ricevere"],["mourir","mort","être","morire"],["naître","né","être","nascere"],
+["peindre","peint","avoir","dipingere"],["ouvrir","ouvert","avoir","aprire"],["offrir","offert","avoir","offrire"],
+["sentir","senti","avoir","sentire"],["tenir","tenu","avoir","tenere"],["vivre","vécu","avoir","vivere"],
+["apprendre","appris","avoir","imparare"],["comprendre","compris","avoir","capire"],["répondre","répondu","avoir","rispondere"],
+["attendre","attendu","avoir","aspettare"],["perdre","perdu","avoir","perdere"],["rendre","rendu","avoir","rendere"],
+["conduire","conduit","avoir","guidare"],["traduire","traduit","avoir","tradurre"],["construire","construit","avoir","costruire"],
+["cuire","cuit","avoir","cuocere"],["suivre","suivi","avoir","seguire"],["vendre","vendu","avoir","vendere"],
+["descendre","descendu","être","scendere"],["monter","monté","être","salire"],["tomber","tombé","être","cadere"],
+["rester","resté","être","restare"],["retourner","retourné","être","ritornare"],["entrer","entré","être","entrare"],
+["arriver","arrivé","être","arrivare"],["devenir","devenu","être","diventare"],["revenir","revenu","être","tornare"]
+];
+
+const FLASHCARDS = {
+famille:[["le père","il padre","👨"],["la mère","la madre","👩"],["le frère","il fratello","👦"],["la sœur","la sorella","👧"],["le fils","il figlio","👶"],["la fille","la figlia","👧"],["le grand-père","il nonno","👴"],["la grand-mère","la nonna","👵"],["l'oncle","lo zio","👨"],["la tante","la zia","👩"],["le cousin","il cugino","🧑"],["le mari","il marito","💍"],["la femme","la moglie","💍"],["le bébé","il bebè","👶"]],
+ecole:[["le livre","il libro","📕"],["le cahier","il quaderno","📓"],["le stylo","la penna","🖊️"],["le crayon","la matita","✏️"],["la gomme","la gomma","🧽"],["la règle","il righello","📏"],["le sac à dos","lo zaino","🎒"],["le professeur","il professore","👨‍🏫"],["l'élève","l'alunno","🧑‍🎓"],["les devoirs","i compiti","📚"]],
+metiers:[["le médecin","il medico","👨‍⚕️"],["le professeur","il professore","👨‍🏫"],["l'avocat","l'avvocato","⚖️"],["le boulanger","il fornaio","🥖"],["le cuisinier","il cuoco","👨‍🍳"],["le policier","il poliziotto","👮"],["le pompier","il pompiere","🚒"],["l'infirmier","l'infermiere","👨‍⚕️"],["le journaliste","il giornalista","📰"],["le chanteur","il cantante","🎤"]],
+loisirs:[["jouer au football","giocare a calcio","⚽"],["nager","nuotare","🏊"],["faire du vélo","andare in bici","🚴"],["lire","leggere","📖"],["écouter de la musique","ascoltare musica","🎵"],["regarder la télé","guardare la TV","📺"],["dessiner","disegnare","🎨"],["chanter","cantare","🎤"],["danser","ballare","💃"],["voyager","viaggiare","✈️"]],
+nourriture:[["le pain","il pane","🍞"],["le fromage","il formaggio","🧀"],["le beurre","il burro","🧈"],["le croissant","il croissant","🥐"],["le poulet","il pollo","🍗"],["le poisson","il pesce","🐟"],["la pomme","la mela","🍎"],["la banane","la banana","🍌"],["la tomate","il pomodoro","🍅"],["le gâteau","la torta","🍰"],["la glace","il gelato","🍦"],["le chocolat","il cioccolato","🍫"],["l'eau","l'acqua","💧"],["le café","il caffè","☕"]],
+voyages:[["le train","il treno","🚆"],["le bus","l'autobus","🚌"],["la voiture","la macchina","🚗"],["le vélo","la bici","🚲"],["l'avion","l'aereo","✈️"],["le bateau","la barca","⛵"],["le billet","il biglietto","🎫"],["le quai","il binario","🛤️"],["la gare","la stazione","🚉"],["l'aéroport","l'aeroporto","🛫"],["la valise","la valigia","🧳"],["le retard","il ritardo","⏰"]],
+ville:[["la banque","la banca","🏦"],["le supermarché","il supermercato","🛒"],["le cinéma","il cinema","🎬"],["le musée","il museo","🏛️"],["l'école","la scuola","🏫"],["l'hôpital","l'ospedale","🏥"],["le parc","il parco","🌳"],["la bibliothèque","la biblioteca","📚"],["la pharmacie","la farmacia","💊"],["le restaurant","il ristorante","🍽️"]],
+meteo:[["Il fait beau","Fa bel tempo","☀️"],["Il fait chaud","Fa caldo","🔥"],["Il fait froid","Fa freddo","🥶"],["Il pleut","Piove","🌧️"],["Il neige","Nevica","❄️"],["Il y a du vent","C'è vento","💨"],["le printemps","la primavera","🌸"],["l'été","l'estate","☀️"],["l'automne","l'autunno","🍂"],["l'hiver","l'inverno","❄️"]],
+vetements:[["le pantalon","i pantaloni","👖"],["la chemise","la camicia","👔"],["le t-shirt","la maglietta","👕"],["le pull","il maglione","🧥"],["la robe","il vestito","👗"],["le manteau","il cappotto","🧥"],["les chaussures","le scarpe","👟"],["le chapeau","il cappello","🎩"],["l'écharpe","la sciarpa","🧣"],["les lunettes","gli occhiali","👓"]],
+corps:[["la tête","la testa","🗣️"],["les cheveux","i capelli","💇"],["les yeux","gli occhi","👁️"],["le nez","il naso","👃"],["la bouche","la bocca","👄"],["les oreilles","le orecchie","👂"],["les dents","i denti","🦷"],["le bras","il braccio","💪"],["la main","la mano","✋"],["la jambe","la gamba","🦵"],["le pied","il piede","🦶"],["le cœur","il cuore","❤️"]],
+emotions:[["content","felice","😊"],["triste","triste","😢"],["en colère","arrabbiato","😠"],["excité","eccitato","🤩"],["ennuyé","annoiato","😐"],["fatigué","stanco","😴"],["effrayé","spaventato","😨"],["surpris","sorpreso","😲"],["inquiet","preoccupato","😟"],["fier","orgoglioso","😌"]],
+maison:[["la cuisine","la cucina","🍳"],["la salle de bains","il bagno","🛁"],["la chambre","la camera","🛏️"],["le salon","il salotto","🛋️"],["le lit","il letto","🛏️"],["la table","il tavolo","🪑"],["le canapé","il divano","🛋️"],["l'armoire","l'armadio","🚪"],["le réfrigérateur","il frigo","🧊"],["le four","il forno","🔥"]],
+animaux:[["le chien","il cane","🐕"],["le chat","il gatto","🐈"],["l'oiseau","l'uccello","🐦"],["le cheval","il cavallo","🐎"],["la vache","la mucca","🐄"],["le lion","il leone","🦁"],["le tigre","la tigre","🐅"],["l'éléphant","l'elefante","🐘"],["le singe","la scimmia","🐒"],["le loup","il lupo","🐺"]]
+};
+
+const QUIZ_QUESTIONS = {
+grammar:[
+{q:"Je ___ étudiant.",o:["suis","es","est"],a:0},
+{q:"Tu ___ un chat.",o:["ai","as","a"],a:1},
+{q:"Nous ___ au cinéma.",o:["allons","allez","vont"],a:0},
+{q:"Ils ___ leurs devoirs.",o:["fait","faisons","font"],a:2},
+{q:"Hier, j'___ mangé une pomme.",o:["ai","suis","a"],a:0},
+{q:"Elle ___ allée à Paris.",o:["ai","est","a"],a:1},
+{q:"Nous ___ la télé quand le téléphone a sonné.",o:["avons","regardions","serons"],a:1},
+{q:"L'année prochaine, j'___ à Londres.",o:["irai","vais","allais"],a:0},
+{q:"Je voudrais un café, s'il vous ___.",o:["plaît","plait","plaice"],a:0},
+{q:"Il y a ___ lait dans le frigo.",o:["du","de la","des"],a:0},
+{q:"Il y a ___ pommes sur la table.",o:["du","de la","des"],a:2},
+{q:"Je vais ___ France.",o:["au","en","à"],a:1},
+{q:"Je vais ___ Canada.",o:["au","en","à"],a:0},
+{q:"___-tu un frère?",o:["Ai","As","A"],a:1},
+{q:"Elle ne ___ pas.",o:["fume","fumes","fument"],a:0},
+{q:"Nous ___ au restaurant hier.",o:["sommes allés","avons allés","allions"],a:0},
+{q:"Si j'étais riche, je ___.",o:["voyage","voyagerais","voyagerai"],a:1},
+{q:"Marie est ___. (arriver)",o:["arrivé","arrivée","arrivées"],a:1},
+{q:"Je me ___ à 7 heures.",o:["lève","leves","levons"],a:0},
+{q:"Il ___ beau aujourd'hui.",o:["fait","est","a"],a:0}
+],
+vocabulary:[
+{q:"'Padre' in francese:",o:["mère","père","frère"],a:1},
+{q:"'Scuola' in francese:",o:["l'école","l'hôpital","la mairie"],a:0},
+{q:"'Mela' in francese:",o:["la banane","la pomme","l'orange"],a:1},
+{q:"'Cane' in francese:",o:["le chat","le chien","le cheval"],a:1},
+{q:"'Pane' in francese:",o:["le pain","le fromage","le gâteau"],a:0},
+{q:"'Felice' in francese:",o:["triste","content","fâché"],a:1},
+{q:"'Piove' in francese:",o:["Il neige","Il pleut","Il fait beau"],a:1},
+{q:"'Libro' in francese:",o:["le cahier","le stylo","le livre"],a:2},
+{q:"'Chiesa' in francese:",o:["l'église","l'école","le musée"],a:0},
+{q:"'Magro' in francese:",o:["gros","mince","grand"],a:1},
+{q:"'Cucina' (stanza):",o:["la chambre","la cuisine","le salon"],a:1},
+{q:"'Bici' in francese:",o:["la voiture","le vélo","le bus"],a:1},
+{q:"'Colazione':",o:["le déjeuner","le dîner","le petit-déjeuner"],a:2},
+{q:"'Sorella':",o:["le frère","la sœur","la mère"],a:1},
+{q:"'Scarpe':",o:["les chaussettes","les chaussures","les gants"],a:1}
+],
+conjugation:[
+{q:"Présent di 'être' con 'je':",o:["suis","es","est"],a:0},
+{q:"Présent di 'avoir' con 'tu':",o:["ai","as","a"],a:1},
+{q:"Présent di 'aller' con 'nous':",o:["vais","allez","allons"],a:2},
+{q:"Présent di 'faire' con 'ils':",o:["fait","faisons","font"],a:2},
+{q:"Présent di 'venir' con 'je':",o:["viens","vient","venons"],a:0},
+{q:"Présent di 'vouloir' con 'vous':",o:["veux","veut","voulez"],a:2},
+{q:"Présent di 'pouvoir' con 'je':",o:["peux","peut","pouvons"],a:0},
+{q:"Présent di 'parler' con 'je':",o:["parle","parles","parlent"],a:0},
+{q:"Présent di 'finir' con 'nous':",o:["finis","finit","finissons"],a:2},
+{q:"Présent di 'vendre' con 'ils':",o:["vends","vend","vendent"],a:2},
+{q:"Passé composé di 'aller' con 'je' (m.):",o:["ai allé","suis allé","suis allée"],a:1},
+{q:"Passé composé di 'manger' con 'je':",o:["ai mangé","suis mangé","avais mangé"],a:0},
+{q:"Imparfait di 'parler' con 'je':",o:["parlais","parlait","parlerais"],a:0},
+{q:"Futur di 'aller' con 'je':",o:["irai","allais","irais"],a:0},
+{q:"Futur di 'être' con 'tu':",o:["seras","serais","étais"],a:0},
+{q:"Conditionnel di 'vouloir' con 'je':",o:["voudrais","voudrai","voulais"],a:0},
+{q:"Participio passato di 'faire':",o:["fait","fais","faisait"],a:0},
+{q:"Participio passato di 'prendre':",o:["pris","prend","prenait"],a:0},
+{q:"Participio passato di 'voir':",o:["vu","voit","voyait"],a:0},
+{q:"Participio passato di 'venir':",o:["venu","vient","venait"],a:0}
+],
+functions:[
+{q:"Per chiedere un biglietto:",o:["Donne-moi un billet","Je voudrais un billet pour Paris, s'il vous plaît","Billet maintenant!"],a:1},
+{q:"Per ordinare al ristorante:",o:["Je veux une pizza","Je voudrais une pizza, s'il vous plaît","Pizza!"],a:1},
+{q:"Per chiedere indicazioni:",o:["Où est la banque?","Excusez-moi, où est la banque, s'il vous plaît?","Banque maintenant!"],a:1},
+{q:"Per descrivere una foto:",o:["Cette photo","Dans cette image, je vois...","Regarde!"],a:1},
+{q:"Per chiedere il prezzo:",o:["Combien ça coûte?","Prix?","Argent combien?"],a:0},
+{q:"Per chiedere l'ora:",o:["Heure?","Quelle heure est-il?","Dis-moi l'heure"],a:1},
+{q:"Per presentarti:",o:["Moi Matteo","Je m'appelle Matteo, enchanté","Matteo nom"],a:1},
+{q:"'Come stai?':",o:["Toi bon?","Comment ça va?","Quoi tu es?"],a:1},
+{q:"'Sto bene':",o:["Bon","Ça va bien, merci","Moi bon"],a:1},
+{q:"Per chiedere il conto:",o:["L'argent!","L'addition, s'il vous plaît","Payer maintenant!"],a:1}
+]
+};
+
+const CONJUGATIONS = {
+etre:{present:["suis","es","est","sommes","êtes","sont"],passe:["ai été","as été","a été","avons été","avez été","ont été"],imparfait:["étais","étais","était","étions","étiez","étaient"],futur:["serai","seras","sera","serons","serez","seront"],conditionnel:["serais","serais","serait","serions","seriez","seraient"]},
+avoir:{present:["ai","as","a","avons","avez","ont"],passe:["ai eu","as eu","a eu","avons eu","avez eu","ont eu"],imparfait:["avais","avais","avait","avions","aviez","avaient"],futur:["aurai","auras","aura","aurons","aurez","auront"],conditionnel:["aurais","aurais","aurait","aurions","auriez","auraient"]},
+aller:{present:["vais","vas","va","allons","allez","vont"],passe:["suis allé(e)","es allé(e)","est allé(e)","sommes allé(e)s","êtes allé(e)s","sont allé(e)s"],imparfait:["allais","allais","allait","allions","alliez","allaient"],futur:["irai","iras","ira","irons","irez","iront"],conditionnel:["irais","irais","irait","irions","iriez","iraient"]},
+faire:{present:["fais","fais","fait","faisons","faites","font"],passe:["ai fait","as fait","a fait","avons fait","avez fait","ont fait"],imparfait:["faisais","faisais","faisait","faisions","faisiez","faisaient"],futur:["ferai","feras","fera","ferons","ferez","feront"],conditionnel:["ferais","ferais","ferait","ferions","feriez","feraient"]},
+venir:{present:["viens","viens","vient","venons","venez","viennent"],passe:["suis venu(e)","es venu(e)","est venu(e)","sommes venu(e)s","êtes venu(e)s","sont venu(e)s"],imparfait:["venais","venais","venait","venions","veniez","venaient"],futur:["viendrai","viendras","viendra","viendrons","viendrez","viendront"],conditionnel:["viendrais","viendrais","viendrait","viendrions","viendriez","viendraient"]},
+vouloir:{present:["veux","veux","veut","voulons","voulez","veulent"],passe:["ai voulu","as voulu","a voulu","avons voulu","avez voulu","ont voulu"],imparfait:["voulais","voulais","voulait","voulions","vouliez","voulaient"],futur:["voudrai","voudras","voudra","voudrons","voudrez","voudront"],conditionnel:["voudrais","voudrais","voudrait","voudrions","voudriez","voudraient"]},
+pouvoir:{present:["peux","peux","peut","pouvons","pouvez","peuvent"],passe:["ai pu","as pu","a pu","avons pu","avez pu","ont pu"],imparfait:["pouvais","pouvais","pouvait","pouvions","pouviez","pouvaient"],futur:["pourrai","pourras","pourra","pourrons","pourrez","pourront"],conditionnel:["pourrais","pourrais","pourrait","pourrions","pourriez","pourraient"]},
+savoir:{present:["sais","sais","sait","savons","savez","savent"],passe:["ai su","as su","a su","avons su","avez su","ont su"],imparfait:["savais","savais","savait","savions","saviez","savaient"],futur:["saurai","sauras","saura","saurons","saurez","sauront"],conditionnel:["saurais","saurais","saurait","saurions","sauriez","sauraient"]},
+prendre:{present:["prends","prends","prend","prenons","prenez","prennent"],passe:["ai pris","as pris","a pris","avons pris","avez pris","ont pris"],imparfait:["prenais","prenais","prenait","prenions","preniez","prenaient"],futur:["prendrai","prendras","prendra","prendrons","prendrez","prendront"],conditionnel:["prendrais","prendrais","prendrait","prendrions","prendriez","prendraient"]},
+voir:{present:["vois","vois","voit","voyons","voyez","voient"],passe:["ai vu","as vu","a vu","avons vu","avez vu","ont vu"],imparfait:["voyais","voyais","voyait","voyions","voyiez","voyaient"],futur:["verrai","verras","verra","verrons","verrez","verront"],conditionnel:["verrais","verrais","verrait","verrions","verriez","verraient"]},
+parler:{present:["parle","parles","parle","parlons","parlez","parlent"],passe:["ai parlé","as parlé","a parlé","avons parlé","avez parlé","ont parlé"],imparfait:["parlais","parlais","parlait","parlions","parliez","parlaient"],futur:["parlerai","parleras","parlera","parlerons","parlerez","parleront"],conditionnel:["parlerais","parlerais","parlerait","parlerions","parleriez","parleraient"]},
+finir:{present:["finis","finis","finit","finissons","finissez","finissent"],passe:["ai fini","as fini","a fini","avons fini","avez fini","ont fini"],imparfait:["finissais","finissais","finissait","finissions","finissiez","finissaient"],futur:["finirai","finiras","finira","finirons","finirez","finiront"],conditionnel:["finirais","finirais","finirait","finirions","finiriez","finiraient"]},
+vendre:{present:["vends","vends","vend","vendons","vendez","vendent"],passe:["ai vendu","as vendu","a vendu","avons vendu","avez vendu","ont vendu"],imparfait:["vendais","vendais","vendait","vendions","vendiez","vendaient"],futur:["vendrai","vendras","vendra","vendrons","vendrez","vendront"],conditionnel:["vendrais","vendrais","vendrait","vendrions","vendriez","vendraient"]}
+};
+
+const SPEAKING_TOPICS = {
+famille:{title:"👨‍👩‍👧 Ma Famille",schema:["1. Présente ta famille","2. Décris chaque membre","3. Ce que vous faites ensemble","4. À qui tu ressembles"],examples:["J'ai une famille petite/grande.","Il y a ... personnes dans ma famille.","Ma mère s'appelle ... Elle a ... ans.","Mon père est ... Il travaille comme ...","Le week-end, nous ... ensemble."],checklist:["Introduzione","Descrizione","Attività","Somiglianze"]},
+ville:{title:"🏙 Ma Ville",schema:["1. Nom et position","2. Lieux intéressants","3. Il y a / il n'y a pas","4. Ce que tu aimes"],examples:["J'habite à ..., une petite/grande ville.","Il y a un beau parc au centre.","Il y a beaucoup de magasins.","J'aime ma ville parce que..."],checklist:["Nome","Luoghi","There is/are","Opinione"]},
+vacances:{title:"🏖 Mes Vacances",schema:["1. Où es-tu allé(e)?","2. Avec qui?","3. Comment as-tu voyagé?","4. Qu'as-tu fait?"],examples:["L'été dernier, je suis allé(e) à ...","Nous avons voyagé en voiture.","Il faisait beau.","Nous avons visité ..."],checklist:["Destinazione","Compagni","Trasporto","Attività"]},
+ecole:{title:"🏫 Mon École",schema:["1. Nom et position","2. Le bâtiment","3. Matières préférées","4. Une journée typique"],examples:["Je vais au lycée ... à ...","Mon école est grande/moderne.","Ma matière préférée est ...","Une journée commence à ..."],checklist:["Nome","Edificio","Materie","Giornata"]},
+film:{title:"🎬 Mon Film Préféré",schema:["1. Titre et genre","2. Personnages","3. Intrigue","4. Pourquoi tu l'aimes"],examples:["Mon film préféré est ...","Le personnage principal est ...","L'histoire parle de ...","J'aime ce film parce que..."],checklist:["Titolo","Personaggi","Trama","Perché"]},
+sport:{title:"⚽ Mon Sport Préféré",schema:["1. Nom du sport","2. Fréquence","3. Où et avec qui","4. Pourquoi tu l'aimes"],examples:["Mon sport préféré est ...","Je joue ... tous les ...","Nous jouons au ...","J'aime ça parce que..."],checklist:["Nome","Frequenza","Dove","Perché"]}
+};
+
+const PHOTOS = {
+people:[{emoji:"👨‍👩‍👧‍👦",desc:"famille"},{emoji:"👩‍🏫",desc:"prof"},{emoji:"👨‍🍳",desc:"chef"},{emoji:"👮",desc:"policier"},{emoji:"👨‍⚕️",desc:"médecin"},{emoji:"🧑‍🎤",desc:"chanteur"}],
+city:[{emoji:"🏙️",desc:"ville"},{emoji:"🌉",desc:"pont"},{emoji:"🏛️",desc:"bâtiment"},{emoji:"🚦",desc:"rue"},{emoji:"🌃",desc:"nuit"},{emoji:"🏘️",desc:"quartier"}],
+ecole:[{emoji:"🏫",desc:"école"},{emoji:"📚",desc:"bibliothèque"},{emoji:"🧪",desc:"labo"},{emoji:"🎨",desc:"art"},{emoji:"⚽",desc:"EPS"},{emoji:"🍽️",desc:"cantine"}],
+vacances:[{emoji:"🏖️",desc:"plage"},{emoji:"⛰️",desc:"montagnes"},{emoji:"🏕️",desc:"camping"},{emoji:"🎡",desc:"parc"},{emoji:"🏛️",desc:"musée"},{emoji:"🚢",desc:"croisière"}],
+sports:[{emoji:"⚽",desc:"foot"},{emoji:"🏀",desc:"basket"},{emoji:"🎾",desc:"tennis"},{emoji:"🏊",desc:"natation"},{emoji:"🚴",desc:"vélo"},{emoji:"🏃",desc:"course"}],
+animaux:[{emoji:"🦁",desc:"lion"},{emoji:"🐘",desc:"éléphant"},{emoji:"🐬",desc:"dauphins"},{emoji:"🦜",desc:"perroquet"},{emoji:"🐼",desc:"panda"},{emoji:"🦒",desc:"girafe"}]
+};
+
+const TRAIN_DIALOGUE = [
+{role:"staff",text:"Bonjour! Comment puis-je vous aider?"},
+{role:"blank",answer:"Je voudrais un billet pour Paris, s'il vous plaît."},
+{role:"staff",text:"Aller simple ou aller-retour?"},
+{role:"blank",answer:"Un aller-retour, s'il vous plaît."},
+{role:"staff",text:"Ça fait 25 euros."},
+{role:"blank",answer:"Voilà."},
+{role:"staff",text:"Le train part du quai 3 à 10h15."},
+{role:"blank",answer:"Merci beaucoup!"}
+];
+
+const RESTAURANT_DIALOGUE = [
+{role:"staff",text:"Bonsoir! Bienvenue."},
+{role:"blank",answer:"Bonsoir. Une table pour deux, s'il vous plaît."},
+{role:"staff",text:"Par ici. Voici le menu."},
+{role:"blank",answer:"Merci. Pouvez-vous nous laisser quelques minutes?"},
+{role:"staff",text:"Vous êtes prêts?"},
+{role:"blank",answer:"Oui, je voudrais le poulet, s'il vous plaît."},
+{role:"staff",text:"Et comme boisson?"},
+{role:"blank",answer:"Une carafe d'eau, s'il vous plaît."},
+{role:"staff",text:"Autre chose?"},
+{role:"blank",answer:"Non, merci. C'est tout."},
+{role:"staff",text:"Bon appétit!"},
+{role:"blank",answer:"Merci!"}
+];
+
+const DIRECTIONS_QUESTIONS = [
+{from:"école",to:"banque",correct:"Allez tout droit, puis tournez à gauche.",options:["Allez tout droit, puis tournez à gauche.","Tournez à droite, puis tout droit.","Allez tout droit et tournez à droite."]},
+{from:"parc",to:"cinéma",correct:"Tournez à gauche, allez tout droit.",options:["Tournez à gauche, allez tout droit.","Allez tout droit, tournez à droite.","Tournez à droite, puis à gauche."]},
+{from:"hôpital",to:"supermarché",correct:"Allez tout droit, puis tournez à droite.",options:["Allez tout droit, puis tournez à droite.","Tournez à gauche, allez tout droit.","Allez tout droit, tournez à gauche."]}
+];
+
+// ============ STATE ============
+let state = {
+xp:0,level:1,streak:0,lastActive:null,
+missionsCompleted:0,quizzesCompleted:0,flashcardsStudied:0,verbsStudied:0,
+diaryEntries:0,speakingTopics:0,photosDescribed:0,
+trainCompleted:false,restaurantCompleted:false,
+examsPassed:{july:false,august:false,final:false},
+achievements:[],diary:[],flashcardErrors:[],
+dailyMissions:[],lastMissionDate:null,minutesStudied:0,lessonsCompleted:0
+};
+
+function loadState(){
+try{
+const saved = localStorage.getItem('frenchHeroState');
+if(saved) state = {...state,...JSON.parse(saved)};
+}catch(e){console.error(e);}
+checkStreak();
+generateDailyMissions();
+}
+
+function saveState(){
+try{
+localStorage.setItem('frenchHeroState',JSON.stringify(state));
+}catch(e){console.error(e);}
+updateUI();
+}
+
+function checkStreak(){
+const today = new Date().toDateString();
+if(state.lastActive){
+const last = new Date(state.lastActive);
+const diff = Math.floor((new Date(today) - last)/(1000*60*60*24));
+if(diff === 1) state.streak++;
+else if(diff > 1) state.streak = 1;
+} else state.streak = 1;
+state.lastActive = today;
+}
+
+function updateUI(){
+document.getElementById('currentLevel').textContent = state.level;
+document.getElementById('levelName').textContent = LEVELS[state.level-1].name;
+const nextLevel = LEVELS[state.level] || LEVELS[LEVELS.length-1];
+const currentLevelXp = LEVELS[state.level-1].xp;
+const progress = state.level >= LEVELS.length ? 100 : ((state.xp - currentLevelXp) / (nextLevel.xp - currentLevelXp)) * 100;
+document.getElementById('xpFill').style.width = Math.min(progress,100) + '%';
+document.getElementById('xpText').textContent = state.xp + ' / ' + (nextLevel.xp || '∞') + ' XP';
+document.getElementById('streakCount').textContent = state.streak;
+document.getElementById('missionsCount').textContent = state.missionsCompleted;
+document.getElementById('achievementsCount').textContent = state.achievements.length;
+document.getElementById('minutesCount').textContent = state.minutesStudied;
+document.getElementById('homeTime').textContent = Math.floor(state.minutesStudied/60) + 'h ' + (state.minutesStudied%60) + 'm';
+document.getElementById('homeLessons').textContent = state.lessonsCompleted;
+document.getElementById('homeQuizzes').textContent = state.quizzesCompleted;
+document.getElementById('homeXP').textContent = state.xp;
+checkAchievements();
+renderAchievements();
+}
+
+function getCurrentLevel(){
+for(let i = LEVELS.length-1; i >= 0; i--){
+if(state.xp >= LEVELS[i].xp) return i+1;
+}
+return 1;
+}
+
+function addXP(amount){
+state.xp += amount;
+const newLevel = getCurrentLevel();
+if(newLevel > state.level){
+state.level = newLevel;
+showNotification('🎉 Livello ' + newLevel + ' - ' + LEVELS[newLevel-1].name + '!');
+}
+saveState();
+}
+
+function showNotification(msg){
+const n = document.createElement('div');
+n.className = 'notification';
+n.textContent = msg;
+document.body.appendChild(n);
+setTimeout(()=>n.remove(),3000);
+}
+
+// ============ NAVIGATION ============
+function setupNavigation(){
+const navButtons = document.querySelectorAll('.nav-btn');
+navButtons.forEach(btn=>{
+btn.addEventListener('click',function(){
+navButtons.forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+this.classList.add('active');
+const sectionId = this.getAttribute('data-section');
+const section = document.getElementById(sectionId);
+if(section) section.classList.add('active');
+state.minutesStudied += 1;
+saveState();
+});
+});
+}
+
+function setupTabs(){
+document.querySelectorAll('.tabs').forEach(tabsContainer=>{
+const tabs = tabsContainer.querySelectorAll('.tab');
+tabs.forEach(tab=>{
+tab.addEventListener('click',function(){
+tabs.forEach(t=>t.classList.remove('active'));
+this.classList.add('active');
+const tabId = this.getAttribute('data-tab');
+if(tabId){
+const parent = tabsContainer.parentElement;
+parent.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+const target = document.getElementById(tabId);
+if(target) target.classList.add('active');
+}
+});
+});
+});
+}
+
+// ============ DAILY TIPS ============
+function showDailyTip(){
+const tip = DAILY_TIPS[Math.floor(Math.random()*DAILY_TIPS.length)];
+document.getElementById('dailyTip').textContent = tip;
+}
+
+// ============ DAILY MISSIONS ============
+const MISSION_TEMPLATES = [
+{type:'flashcard',diff:'easy',text:'Studia 10 flashcard',target:10,xp:20},
+{type:'flashcard',diff:'medium',text:'Studia 25 flashcard',target:25,xp:50},
+{type:'quiz',diff:'easy',text:'Completa 1 quiz',target:1,xp:30},
+{type:'quiz',diff:'medium',text:'Completa 3 quiz',target:3,xp:80},
+{type:'verb',diff:'easy',text:'Studia 5 verbi',target:5,xp:25},
+{type:'verb',diff:'medium',text:'Studia 15 verbi',target:15,xp:60},
+{type:'speaking',diff:'easy',text:'Prova 1 speaking',target:1,xp:30},
+{type:'photo',diff:'easy',text:'Descrivi 2 foto',target:2,xp:40},
+{type:'diary',diff:'easy',text:'Scrivi 1 diario',target:1,xp:50},
+{type:'grammar',diff:'easy',text:'Leggi 2 lezioni',target:2,xp:30}
+];
+
+function generateDailyMissions(){
+const today = new Date().toDateString();
+if(state.lastMissionDate === today && state.dailyMissions.length > 0) return;
+const missions = [];
+const easy = MISSION_TEMPLATES.filter(m=>m.diff==='easy');
+const medium = MISSION_TEMPLATES.filter(m=>m.diff==='medium');
+missions.push({...easy[Math.floor(Math.random()*easy.length)],completed:false,progress:0});
+missions.push({...easy[Math.floor(Math.random()*easy.length)],completed:false,progress:0});
+missions.push({...medium[Math.floor(Math.random()*medium.length)],completed:false,progress:0});
+state.dailyMissions = missions;
+state.lastMissionDate = today;
+}
+
+function renderMissions(){
+const container = document.getElementById('missionsList');
+const homeContainer = document.getElementById('dailyMissions');
+const html = state.dailyMissions.map((m,i)=>{
+const progress = Math.min((m.progress/m.target)*100,100);
+return `<div class="mission-card mission-${m.diff}">
+<h4>${m.text}</h4>
+<div style="background:#ddd;height:20px;border-radius:10px;overflow:hidden;margin:10px 0">
+<div style="background:linear-gradient(90deg,#00b894,#00a381);height:100%;width:${progress}%;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;font-size:0.8em">${m.progress}/${m.target}</div>
+</div>
+<p><strong>Ricompensa:</strong> ${m.xp} XP</p>
+${m.completed?'<p style="color:#00a381;font-weight:bold">✅ COMPLETATA!</p>':
+`<button class="btn btn-small" onclick="claimMission(${i})" ${m.progress<m.target?'disabled style="opacity:0.5"':''}>🎁 Riscuoti</button>`}
+</div>`;
+}).join('');
+if(container) container.innerHTML = html;
+if(homeContainer) homeContainer.innerHTML = html;
+}
+
+function updateMissionProgress(type,amount){
+state.dailyMissions.forEach(m=>{
+if(m.type === type && !m.completed){
+m.progress = Math.min(m.progress + amount, m.target);
+if(m.progress >= m.target) showNotification('🎯 Missione completata!');
+}
+});
+saveState();
+renderMissions();
+}
+
+function claimMission(idx){
+const m = state.dailyMissions[idx];
+if(m.progress >= m.target && !m.completed){
+m.completed = true;
+state.missionsCompleted++;
+addXP(m.xp);
+showNotification('🎁 +' + m.xp + ' XP!');
+saveState();
+renderMissions();
+}
+}
+
+function refreshMissions(){
+state.lastMissionDate = null;
+generateDailyMissions();
+renderMissions();
+}
+
+// ============ ACHIEVEMENTS ============
+function checkAchievements(){
+ACHIEVEMENTS.forEach(a=>{
+if(!state.achievements.includes(a.id) && a.cond(state)){
+state.achievements.push(a.id);
+showNotification('🏆 ' + a.name + '!');
+}
+});
+}
+
+function renderAchievements(){
+const container = document.getElementById('achievementsList');
+if(!container) return;
+container.innerHTML = ACHIEVEMENTS.map(a=>{
+const unlocked = state.achievements.includes(a.id);
+return `<div class="achievement ${unlocked?'':'locked'}">
+<div class="achievement-icon">${a.icon}</div>
+<div style="font-weight:bold;font-size:0.85em">${a.name}</div>
+<div style="font-size:0.75em;color:#666;margin-top:5px">${a.desc}</div>
+</div>`;
+}).join('');
+}
+
+// ============ FLASHCARDS ============
+let currentFlashcards = [];
+let currentFCIndex = 0;
+
+function getAllFlashcards(){
+let all = [];
+Object.keys(FLASHCARDS).forEach(cat=>{
+FLASHCARDS[cat].forEach(f=>all.push({fr:f[0],it:f[1],emoji:f[2],cat:cat}));
+});
+return all;
+}
+
+function startFlashcardCategory(cat){
+let cards = [];
+if(cat === 'all') cards = getAllFlashcards();
+else if(cat === 'erreurs') cards = state.flashcardErrors.slice();
+else cards = (FLASHCARDS[cat]||[]).map(f=>({fr:f[0],it:f[1],emoji:f[2],cat:cat}));
+currentFlashcards = cards.sort(()=>Math.random()-0.5);
+currentFCIndex = 0;
+showFlashcard();
+}
+
+function showFlashcard(){
+if(currentFlashcards.length === 0){
+document.getElementById('fcFront').textContent = 'Scegli una categoria';
+document.getElementById('fcBack').textContent = '';
+return;
+}
+const card = currentFlashcards[currentFCIndex];
+document.getElementById('fcEmoji').textContent = card.emoji;
+document.getElementById('fcFront').textContent = card.fr;
+document.getElementById('fcBack').textContent = card.it;
+document.getElementById('flashcard').classList.remove('flipped');
+document.getElementById('flashcardProgress').textContent = `Carta ${currentFCIndex+1} di ${currentFlashcards.length}`;
+}
+
+function flipFlashcard(){
+document.getElementById('flashcard').classList.toggle('flipped');
+}
+
+function nextFlashcard(){
+if(currentFlashcards.length === 0) return;
+currentFCIndex = (currentFCIndex+1) % currentFlashcards.length;
+showFlashcard();
+}
+
+function markFlashcard(correct){
+if(currentFlashcards.length === 0) return;
+const card = currentFlashcards[currentFCIndex];
+if(!correct){
+if(!state.flashcardErrors.find(e=>e.fr===card.fr)) state.flashcardErrors.push(card);
+} else {
+state.flashcardErrors = state.flashcardErrors.filter(e=>e.fr!==card.fr);
+}
+state.flashcardsStudied++;
+addXP(2);
+updateMissionProgress('flashcard',1);
+saveState();
+nextFlashcard();
+}
+
+function setupFlashcardCategories(){
+document.querySelectorAll('#flashcardCategories .tab').forEach(t=>{
+t.addEventListener('click',function(){
+document.querySelectorAll('#flashcardCategories .tab').forEach(x=>x.classList.remove('active'));
+this.classList.add('active');
+startFlashcardCategory(this.getAttribute('data-cat'));
+});
+});
+}
+
+// ============ VERBS ============
+let verbMode = 'list';
+let verbFCIndex = 0;
+let verbQuizIndex = 0;
+
+function renderVerbTable(filter=''){
+const tbody = document.getElementById('verbTableBody');
+const filtered = IRREGULAR_VERBS.filter(v=>
+v[0].toLowerCase().includes(filter.toLowerCase()) ||
+v[3].toLowerCase().includes(filter.toLowerCase())
+);
+tbody.innerHTML = filtered.map(v=>`<tr><td><strong>${v[0]}</strong></td><td>${v[1]}</td><td>${v[2]}</td><td>${v[3]}</td></tr>`).join('');
+}
+
+function filterVerbs(){
+renderVerbTable(document.getElementById('verbSearch').value);
+}
+
+function showVerbMode(mode){
+verbMode = mode;
+document.getElementById('verbListMode').style.display = mode==='list'?'block':'none';
+document.getElementById('verbFlashcardMode').style.display = mode==='flashcard'?'block':'none';
+document.getElementById('verbQuizMode').style.display = mode==='quiz'?'block':'none';
+if(mode==='flashcard'){verbFCIndex=0;showVerbFlashcard();}
+if(mode==='quiz') nextVerbQuiz();
+}
+
+function showVerbFlashcard(){
+const v = IRREGULAR_VERBS[verbFCIndex];
+document.getElementById('verbFcFront').textContent = v[0];
+document.getElementById('verbFcBack').textContent = `${v[1]} (${v[2]}) - ${v[3]}`;
+document.getElementById('verbFlashcard').classList.remove('flipped');
+}
+
+function flipVerbFlashcard(){
+document.getElementById('verbFlashcard').classList.toggle('flipped');
+}
+
+function nextVerbFlashcard(){
+verbFCIndex = (verbFCIndex+1) % IRREGULAR_VERBS.length;
+showVerbFlashcard();
+state.verbsStudied++;
+addXP(2);
+updateMissionProgress('verb',1);
+saveState();
+}
+
+function prevVerbFlashcard(){
+verbFCIndex = (verbFCIndex-1+IRREGULAR_VERBS.length) % IRREGULAR_VERBS.length;
+showVerbFlashcard();
+}
+
+function nextVerbQuiz(){
+verbQuizIndex = Math.floor(Math.random()*IRREGULAR_VERBS.length);
+const v = IRREGULAR_VERBS[verbQuizIndex];
+const types = ['participe','base'];
+const type = types[Math.floor(Math.random()*types.length)];
+let q, a;
+if(type==='participe'){q=`Participio passato di "${v[0]}"?`;a=v[1];}
+else {q=`Infinito di "${v[1]}" (${v[3]})?`;a=v[0];}
+document.getElementById('verbQuizQuestion').textContent = q;
+document.getElementById('verbQuizAnswer').value = '';
+document.getElementById('verbQuizFeedback').textContent = '';
+document.getElementById('verbQuizAnswer').dataset.answer = a;
+}
+
+function checkVerbAnswer(){
+const ans = document.getElementById('verbQuizAnswer').value.trim().toLowerCase();
+const correct = document.getElementById('verbQuizAnswer').dataset.answer.toLowerCase();
+const fb = document.getElementById('verbQuizFeedback');
+if(ans === correct){
+fb.innerHTML = '<span style="color:#00a381">✅ Corretto!</span>';
+addXP(5);
+state.verbsStudied++;
+updateMissionProgress('verb',1);
+} else {
+fb.innerHTML = `<span style="color:#ED1C24">❌ Risposta: <strong>${correct}</strong></span>`;
+}
+saveState();
+}
+
+// ============ CONJUGATION ============
+function showConjugation(){
+const verb = document.getElementById('conjVerb').value;
+const tense = document.getElementById('conjTense').value;
+const data = CONJUGATIONS[verb];
+if(!data || !data[tense]) return;
+const pronoms = ['Je','Tu','Il/Elle','Nous','Vous','Ils/Elles'];
+const tenseNames = {present:'Présent',passe:'Passé Composé',imparfait:'Imparfait',futur:'Futur Simple',conditionnel:'Conditionnel'};
+let html = `<h3>${tenseNames[tense]} di "${verb}"</h3><table class="grammar-table"><tr><th>Pronome</th><th>Forma</th></tr>`;
+pronoms.forEach((p,i)=>{
+const form = data[tense][i];
+const lowerP = p.toLowerCase();
+const display = lowerP.includes('/') ? `${p} ${form}` : `${p.toLowerCase()} ${form}`;
+html += `<tr><td><strong>${p}</strong></td><td>${display}</td></tr>`;
+});
+html += '</table>';
+document.getElementById('conjResult').innerHTML = html;
+state.lessonsCompleted++;
+addXP(3);
+saveState();
+}
+
+// ============ QUIZ ============
+let currentQuiz = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function startQuiz(category){
+let questions = [];
+if(category === 'mixed') questions = [...QUIZ_QUESTIONS.grammar,...QUIZ_QUESTIONS.vocabulary,...QUIZ_QUESTIONS.conjugation,...QUIZ_QUESTIONS.functions];
+else questions = QUIZ_QUESTIONS[category] || [];
+currentQuiz = [...questions].sort(()=>Math.random()-0.5).slice(0,10);
+quizIndex = 0;
+quizScore = 0;
+document.getElementById('quizTotal').textContent = currentQuiz.length;
+showQuizQuestion();
+}
+
+function showQuizQuestion(){
+if(quizIndex >= currentQuiz.length){
+document.getElementById('quizQuestion').textContent = `🎉 Quiz completato! Punteggio: ${quizScore}/${currentQuiz.length}`;
+document.getElementById('quizOptions').innerHTML = `<button class="btn btn-success" onclick="startQuiz('mixed')">🔄 Nuovo Quiz</button>`;
+document.getElementById('nextQuizBtn').style.display = 'none';
+state.quizzesCompleted++;
+addXP(quizScore * 10);
+updateMissionProgress('quiz',1);
+saveState();
+return;
+}
+quizAnswered = false;
+const q = currentQuiz[quizIndex];
+document.getElementById('quizQuestion').textContent = q.q;
+document.getElementById('quizNum').textContent = quizIndex + 1;
+document.getElementById('quizScore').textContent = quizScore;
+document.getElementById('quizFeedback').textContent = '';
+document.getElementById('nextQuizBtn').style.display = 'none';
+document.getElementById('quizOptions').innerHTML = q.o.map((opt,i)=>
+`<button class="quiz-option" onclick="answerQuiz(${i})">${opt}</button>`
+).join('');
+}
+
+function answerQuiz(idx){
+if(quizAnswered) return;
+quizAnswered = true;
+const q = currentQuiz[quizIndex];
+const options = document.querySelectorAll('#quizOptions .quiz-option');
+options.forEach((opt,i)=>{
+if(i === q.a) opt.classList.add('correct');
+else if(i === idx) opt.classList.add('wrong');
+opt.style.pointerEvents = 'none';
+});
+if(idx === q.a){
+quizScore++;
+document.getElementById('quizFeedback').innerHTML = '<span style="color:#00a381">✅ Corretto!</span>';
+addXP(5);
+} else {
+document.getElementById('quizFeedback').innerHTML = '<span style="color:#ED1C24">❌ Sbagliato!</span>';
+}
+document.getElementById('quizScore').textContent = quizScore;
+document.getElementById('nextQuizBtn').style.display = 'inline-block';
+saveState();
+}
+
+function nextQuiz(){
+quizIndex++;
+showQuizQuestion();
+}
+
+// ============ SPEAKING ============
+function showSpeaking(topic){
+const data = SPEAKING_TOPICS[topic];
+const container = document.getElementById('speakingContent');
+container.innerHTML = `
+<div class="card">
+<h3>${data.title}</h3>
+<h4>📋 Schema</h4>
+<ol style="margin-left:20px;line-height:1.8">
+${data.schema.map(s=>`<li>${s}</li>`).join('')}
+</ol>
+<h4>💡 Frasi Utili</h4>
+<div class="example-box">
+<ul style="margin-left:20px;line-height:1.8">
+${data.examples.map(e=>`<li>${e}</li>`).join('')}
+</ul>
+</div>
+<h4>✅ Checklist</h4>
+<ul style="list-style:none">
+${data.checklist.map(c=>`<li style="padding:8px;margin:5px 0;background:#f8f9fa;border:2px solid #333;border-radius:8px;cursor:pointer" onclick="this.style.background=this.style.background?'':'#00b894'">${c}</li>`).join('')}
+</ul>
+<h4>🎤 Scrivi il tuo discorso</h4>
+<textarea class="input-field" placeholder="Scrivi in francese..."></textarea>
+<button class="btn btn-success" onclick="completeSpeaking()">✅ Ho completato!</button>
+</div>
+`;
+}
+
+function completeSpeaking(){
+state.speakingTopics++;
+addXP(20);
+updateMissionProgress('speaking',1);
+showNotification('🗣️ +20 XP!');
+saveState();
+}
+
+// ============ PHOTOS ============
+function showPhotoCategory(cat){
+const grid = document.getElementById('photoGrid');
+grid.innerHTML = PHOTOS[cat].map((p,i)=>
+`<div class="photo-card" onclick="openPhotoTrainer('${cat}',${i})">
+<div class="photo-placeholder">${p.emoji}</div>
+<div class="photo-info"><strong>${p.desc}</strong></div>
+</div>`
+).join('');
+}
+
+function openPhotoTrainer(cat,idx){
+const photo = PHOTOS[cat][idx];
+document.getElementById('photoTrainer').style.display = 'block';
+document.getElementById('photoDisplay').textContent = photo.emoji;
+document.getElementById('photoDescription').value = '';
+document.getElementById('photoFeedback').textContent = '';
+}
+
+function checkPhotoDescription(){
+const text = document.getElementById('photoDescription').value.toLowerCase();
+const fb = document.getElementById('photoFeedback');
+let score = 0;
+const phrases = ['dans cette image','je vois','il y a','au premier plan','à l\'arrière-plan','à gauche','à droite','je pense','peut-être','ils portent'];
+phrases.forEach(p=>{if(text.includes(p)) score++;});
+if(text.length < 30){
+fb.innerHTML = '<span style="color:#ED1C24">❌ Scrivi almeno 30 caratteri!</span>';
+return;
+}
+if(score >= 3){
+fb.innerHTML = `<span style="color:#00a381">🎉 Excellent! ${score} espressioni corrette!</span>`;
+state.photosDescribed++;
+addXP(15);
+updateMissionProgress('photo',1);
+saveState();
+} else {
+fb.innerHTML = `<span style="color:#ff9800">🤔 Usa: "Dans cette image, je vois...", "Il y a...", "À gauche/droite..."</span>`;
+}
+}
+
+function closePhotoTrainer(){
+document.getElementById('photoTrainer').style.display = 'none';
+}
+
+// ============ TRAIN ============
+let trainStep = 0;
+function showTrainMode(mode){
+trainStep = 0;
+const container = document.getElementById('trainContent');
+if(mode === 'listen'){
+container.innerHTML = '<div class="dialogue">' + TRAIN_DIALOGUE.map(l=>{
+if(l.role === 'staff') return `<div class="dialogue-line staff">🎫 ${l.text}</div>`;
+return `<div class="dialogue-line blank">🧑 <em>${l.answer}</em></div>`;
+}).join('') + '</div><button class="btn btn-success" onclick="completeTrain()">✅ Ho studiato!</button>';
+} else if(mode === 'roleplay'){
+container.innerHTML = '<div class="dialogue" id="trainRoleplay"></div>' +
+'<input type="text" class="input-field" id="trainRoleInput" placeholder="Rispondi in francese...">' +
+'<button class="btn btn-success" onclick="trainRoleplayAnswer()">✅ Invia</button>';
+trainStep = 0;
+showTrainRoleplayLine();
+}
+}
+
+function showTrainRoleplayLine(){
+const container = document.getElementById('trainRoleplay');
+if(!container) return;
+let html = '';
+for(let i=0;i<trainStep;i++){
+const l = TRAIN_DIALOGUE[i];
+if(l.role === 'staff') html += `<div class="dialogue-line staff">🎫 ${l.text}</div>`;
+else html += `<div class="dialogue-line customer">🧑 ${l.answer}</div>`;
+}
+if(trainStep < TRAIN_DIALOGUE.length){
+const l = TRAIN_DIALOGUE[trainStep];
+if(l.role === 'staff'){
+html += `<div class="dialogue-line staff">🎫 ${l.text}</div>`;
+trainStep++;
+container.innerHTML = html;
+setTimeout(showTrainRoleplayLine,500);
+return;
+}
+}
+container.innerHTML = html;
+}
+
+function trainRoleplayAnswer(){
+const input = document.getElementById('trainRoleInput');
+const ans = input.value.trim();
+if(ans.length > 3){
+const container = document.getElementById('trainRoleplay');
+container.innerHTML += `<div class="dialogue-line customer">🧑 ${ans}</div>`;
+input.value = '';
+addXP(5);
+trainStep++;
+showTrainRoleplayLine();
+}
+}
+
+function completeTrain(){
+state.trainCompleted = true;
+addXP(50);
+showNotification('🚂 +50 XP!');
+saveState();
+}
+
+// ============ RESTAURANT ============
+let restaurantStep = 0;
+function renderRestaurant(){
+restaurantStep = 0;
+showRestaurantLine();
+}
+
+function showRestaurantLine(){
+const container = document.getElementById('restaurantDialogue');
+let html = '';
+for(let i=0;i<restaurantStep;i++){
+const l = RESTAURANT_DIALOGUE[i];
+if(l.role === 'staff') html += `<div class="dialogue-line staff">🍽️ ${l.text}</div>`;
+else html += `<div class="dialogue-line customer">🧑 ${l.answer}</div>`;
+}
+container.innerHTML = html;
+if(restaurantStep >= RESTAURANT_DIALOGUE.length){
+document.getElementById('restaurantInput').style.display = 'none';
+document.getElementById('restaurantFeedback').innerHTML = '<span style="color:#00a381;font-weight:bold">🎉 Félicitations!</span>';
+state.restaurantCompleted = true;
+addXP(100);
+saveState();
+return;
+}
+const next = RESTAURANT_DIALOGUE[restaurantStep];
+if(next.role === 'staff'){
+container.innerHTML = html + `<div class="dialogue-line staff">🍽️ ${next.text}</div>`;
+restaurantStep++;
+setTimeout(showRestaurantLine,500);
+document.getElementById('restaurantAnswer').value = '';
+}
+}
+
+function checkRestaurantAnswer(){
+const input = document.getElementById('restaurantAnswer');
+const ans = input.value.trim();
+if(ans.length < 3) return;
+document.getElementById('restaurantDialogue').innerHTML += `<div class="dialogue-line customer">🧑 ${ans}</div>`;
+addXP(5);
+restaurantStep++;
+input.value = '';
+showRestaurantLine();
+saveState();
+}
+
+function showRestaurantHint(){
+const next = RESTAURANT_DIALOGUE[restaurantStep];
+if(next && next.role === 'blank'){
+document.getElementById('restaurantFeedback').innerHTML = `<span style="color:#ff9800">💡 "${next.answer}"</span>`;
+}
+}
+
+function restartRestaurant(){
+document.getElementById('restaurantInput').style.display = 'block';
+document.getElementById('restaurantFeedback').innerHTML = '';
+renderRestaurant();
+}
+
+// ============ DIRECTIONS ============
+let currentDirection = null;
+function newDirectionsQuestion(){
+currentDirection = DIRECTIONS_QUESTIONS[Math.floor(Math.random()*DIRECTIONS_QUESTIONS.length)];
+document.getElementById('directionsQuestion').innerHTML = `<div class="card"><h4>🗺️ Da <strong>${currentDirection.from}</strong> a <strong>${currentDirection.to}</strong>?</h4></div>`;
+const opts = [...currentDirection.options].sort(()=>Math.random()-0.5);
+document.getElementById('directionsOptions').innerHTML = opts.map(o=>
+`<button class="quiz-option" onclick="checkDirection(this,'${o.replace(/'/g,"\\'")}')">${o}</button>`
+).join('');
+document.getElementById('directionsFeedback').textContent = '';
+}
+
+function checkDirection(btn,ans){
+const fb = document.getElementById('directionsFeedback');
+document.querySelectorAll('#directionsOptions .quiz-option').forEach(b=>{
+b.style.pointerEvents = 'none';
+if(b.textContent === currentDirection.correct) b.style.background = '#00b894';
+});
+if(ans === currentDirection.correct){
+btn.style.background = '#00b894';
+fb.innerHTML = '<span style="color:#00a381">✅ Corretto!</span>';
+addXP(10);
+} else {
+btn.style.background = '#ED1C24';
+fb.innerHTML = `<span style="color:#ED1C24">❌ ${currentDirection.correct}</span>`;
+}
+saveState();
+}
+
+// ============ DIARY ============
+function showDiaryMode(mode){
+const container = document.getElementById('diaryContent');
+if(mode === 'daily'){
+container.innerHTML = `
+<h4>📝 Journal - ${new Date().toLocaleDateString('it-IT')}</h4>
+<div class="example-box">
+<strong>💡 Spunti:</strong>
+<ul style="margin-left:20px;line-height:1.8">
+<li>Aujourd'hui, je me suis réveillé(e) à...</li>
+<li>Pour le petit-déjeuner, j'ai mangé...</li>
+<li>Le matin, j'ai...</li>
+<li>Cet après-midi, j'ai...</li>
+</ul>
+</div>
+<textarea class="input-field" id="diaryText" placeholder="Aujourd'hui..." style="min-height:200px"></textarea>
+<button class="btn btn-success" onclick="saveDiary('daily')">💾 Salva</button>
+`;
+} else if(mode === 'weekly'){
+container.innerHTML = `
+<h4>📊 Journal Hebdomadaire</h4>
+<textarea class="input-field" id="diaryText" placeholder="Cette semaine..." style="min-height:200px"></textarea>
+<button class="btn btn-success" onclick="saveDiary('weekly')">💾 Salva</button>
+`;
+} else {
+if(state.diary.length === 0) container.innerHTML = '<p>📝 Nessun diario ancora.</p>';
+else container.innerHTML = state.diary.map((d,i)=>
+`<div class="card"><div style="color:#002395;font-weight:bold">📅 ${d.date}</div><p>${d.text}</p>
+<button class="btn btn-danger" onclick="deleteDiary(${i})">🗑️</button></div>`
+).join('');
+}
+}
+
+function saveDiary(type){
+const text = document.getElementById('diaryText').value.trim();
+if(text.length < 10){showNotification('❌ Almeno 10 caratteri!');return;}
+state.diary.unshift({date:new Date().toLocaleString('it-IT'),type:type,text:text});
+state.diaryEntries++;
+addXP(30);
+updateMissionProgress('diary',1);
+showNotification('📔 +30 XP!');
+saveState();
+showDiaryMode('read');
+}
+
+function deleteDiary(idx){
+state.diary.splice(idx,1);
+saveState();
+showDiaryMode('read');
+}
+
+// ============ EXAMS ============
+function startExam(type){
+let questions = [];
+let title = '';
+if(type === 'july'){
+title = 'Verifica Luglio';
+questions = [...QUIZ_QUESTIONS.grammar,...QUIZ_QUESTIONS.conjugation].sort(()=>Math.random()-0.5).slice(0,15);
+} else if(type === 'august'){
+title = 'Verifica Agosto';
+questions = [...QUIZ_QUESTIONS.grammar,...QUIZ_QUESTIONS.vocabulary,...QUIZ_QUESTIONS.conjugation].sort(()=>Math.random()-0.5).slice(0,20);
+} else {
+title = 'Verifica Finale';
+questions = [...QUIZ_QUESTIONS.grammar,...QUIZ_QUESTIONS.vocabulary,...QUIZ_QUESTIONS.conjugation,...QUIZ_QUESTIONS.functions].sort(()=>Math.random()-0.5).slice(0,25);
+}
+const container = document.getElementById('exam'+type.charAt(0).toUpperCase()+type.slice(1)+'Result');
+let html = `<div class="quiz-container"><h3>${title}</h3>`;
+questions.forEach((q,i)=>{
+html += `<div class="quiz-question">${i+1}. ${q.q}</div><div class="quiz-options">`;
+q.o.forEach((o,j)=>{
+html += `<button class="quiz-option" onclick="this.parentElement.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('correct','wrong'));this.classList.add('${j===q.a?'correct':'wrong'}');this.parentElement.querySelectorAll('.quiz-option').forEach((x,idx)=>{if(idx===${q.a})x.classList.add('correct')});">${o}</button>`;
+});
+html += `</div>`;
+});
+html += `<button class="btn btn-success" onclick="finishExam('${type}')">📊 Calcola Voto</button></div>`;
+container.innerHTML = html;
+container.dataset.total = questions.length;
+}
+
+function finishExam(type){
+const container = document.getElementById('exam'+type.charAt(0).toUpperCase()+type.slice(1)+'Result');
+const correct = container.querySelectorAll('.quiz-option.correct').length;
+const total = parseInt(container.dataset.total);
+const score = Math.round((correct/total)*10);
+let vote = score >= 90 ? 10 : score >= 80 ? 9 : score >= 70 ? 8 : score >= 60 ? 7 : score >= 50 ? 6 : score >= 40 ? 5 : 4;
+const passed = vote >= 6;
+if(passed){state.examsPassed[type] = true;addXP(100);}
+container.innerHTML += `<div class="card" style="background:${passed?'#d4edda':'#f8d7da'};margin-top:15px">
+<h3>${passed?'🎉 PROMOSSO!':'😢 NON PROMOSSO'}</h3>
+<p><strong>Corrette:</strong> ${correct}/${total}</p>
+<p><strong>Voto:</strong> ${vote}</p>
+</div>`;
+saveState();
+}
+
+// ============ AI TUTOR ============
+function sendTutorMessage(){
+const input = document.getElementById('tutorInput');
+const msg = input.value.trim();
+if(!msg) return;
+const chat = document.getElementById('tutorChat');
+chat.innerHTML += `<div class="dialogue-line staff">🧑 Matteo: ${msg}</div>`;
+input.value = '';
+setTimeout(()=>{
+const response = generateTutorResponse(msg);
+chat.innerHTML += `<div class="dialogue-line customer">🇫🇷 Tutor: ${response}</div>`;
+chat.scrollTop = chat.scrollHeight;
+},300);
+chat.scrollTop = chat.scrollHeight;
+}
+
+function generateTutorResponse(msg){
+const lower = msg.toLowerCase();
+const translations = {
+'ciao':'Bonjour! Comment ça va?','come stai':'Ça va bien, merci!','grazie':'Merci!',
+'buongiorno':'Bonjour!','arrivederci':'Au revoir!','ho fame':"J'ai faim",
+'ho sete':"J'ai soif",'ho freddo':"J'ai froid",'ho caldo':"J'ai chaud"
+};
+for(let key in translations){if(lower.includes(key)) return translations[key] + ' 💡';}
+if(lower.includes('passé composé') || lower.includes('passato'))
+return "Passé Composé: avoir/être al présent + participio passato. Con être il participio si accorda! ⏪";
+if(lower.includes('imparfait') || lower.includes('imperfetto'))
+return "Imparfait: forma 'nous' al présent - ons + -ais,-ais,-ait,-ions,-iez,-aient. ⏪";
+if(lower.includes('futur') || lower.includes('futuro'))
+return "Futur Simple: infinito + -ai,-as,-a,-ons,-ez,-ont. 🔮";
+if(lower.includes('conditionnel') || lower.includes('condizionale'))
+return "Conditionnel: radice futur + desinenze imparfait. Per cortesia: Je voudrais... 💭";
+if(lower.includes('pronoms') || lower.includes('pronomi'))
+return "COD: me,te,le/la,nous,vous,les. COI: me,te,lui,nous,vous,leur. 👥";
+if(lower.includes('article') || lower.includes('articolo'))
+return "Articles: le/la/les (det.), un/une/des (indet.), du/de la/de l'/des (part.). 📝";
+if(lower.includes('négation') || lower.includes('negazione'))
+return "Négation: ne + verbo + pas. Jamais (mai), plus (più), rien (niente). ❌";
+if(lower.includes('comparatif') || lower.includes('comparativo'))
+return "Comparatifs: plus...que, moins...que, aussi...que. Superlatif: le/la plus. 📊";
+if(lower.includes('preposition') || lower.includes('preposizione'))
+return "Prépositions: à (città), en (paesi fem.), au (paesi masc.), chez (a casa di). 📍";
+if(lower.includes('participe') || lower.includes('participio'))
+return "Participi: -é (-er), -i (-ir), -u (-re). Irregolari: fait,pris,vu,lu,écrit... 📝";
+if(lower.includes('pronominal') || lower.includes('pronominale'))
+return "Verbi pronominali: se laver, se lever. Al passato sempre être: Je me suis lavé(e). 🔄";
+if(lower.includes('foto') || lower.includes('photo'))
+return "Foto: 'Dans cette image, je vois...', 'Il y a...', 'Au premier plan...'. 📷";
+if(lower.includes('indicazioni') || lower.includes('direction'))
+return "Indicazioni: 'Excusez-moi, où est...?', 'Allez tout droit', 'Tournez à gauche/droite'. 🗺";
+if(lower.includes('ristorante') || lower.includes('restaurant'))
+return "Ristorante: 'Je voudrais ..., s'il vous plaît.' Conto: 'L'addition, s'il vous plaît.' 🥐";
+if(lower.includes('treno') || lower.includes('train'))
+return "Treno: 'Je voudrais un billet pour...'. 'Aller simple ou aller-retour?'. 🚂";
+if(lower.includes('meteo') || lower.includes('tempo'))
+return "Meteo: 'Il fait beau/chaud/froid'. 'Il pleut/neige'. 'Il y a du vent'. 🌤";
+if(lower.includes('famiglia') || lower.includes('famille'))
+return "Famiglia: 'J'ai une famille...'. 'Mon père/ma mère/mon frère/ma sœur...'. 👨‍👩‍👧";
+if(lower.includes('essere') || lower.includes('être'))
+return "Être: je suis, tu es, il est, nous sommes, vous êtes, ils sont. 🇫🇷";
+if(lower.includes('avere') || lower.includes('avoir'))
+return "Avoir: j'ai, tu as, il a, nous avons, vous avez, ils ont. AVOIR per: j'ai faim/soif/froid! 🍽️";
+const defaults = ["Interessante! Prova a scrivere una frase in francese. 💡","Chiedimi: passé composé, imparfait, pronoms... 📚","Scrivi una frase e ti do un consiglio! ✍️"];
+return defaults[Math.floor(Math.random()*defaults.length)];
+}
+
+// ============ INIT ============
+function init(){
+loadState();
+setupNavigation();
+setupTabs();
+setupFlashcardCategories();
+showDailyTip();
+renderMissions();
+renderVerbTable();
+showPhotoCategory('people');
+showSpeaking('famille');
+renderRestaurant();
+showTrainMode('listen');
+newDirectionsQuestion();
+showDiaryMode('daily');
+updateUI();
+setInterval(()=>{
+if(document.visibilityState === 'visible'){
+state.minutesStudied++;
+saveState();
+}
+},60000);
+}
+
+// Avvia quando il DOM è pronto
+if(document.readyState === 'loading'){
+document.addEventListener('DOMContentLoaded', init);
+} else {
+init();
+}
+</script>
+</body>
+</html>
