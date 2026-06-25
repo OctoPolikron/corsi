@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRENCH HERO! - Matteo ESTATE 2026</title>
+<title>FRENCH HERO! - David ESTATE 2026</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Comic Sans MS',cursive;background:linear-gradient(135deg,#002395 0%,#ED1C24 100%);color:#333;min-height:100vh;padding:10px}
@@ -97,7 +97,7 @@ textarea.input-field{min-height:100px;resize:vertical}
 <div class="container">
 <header>
 <h1>🐓 FRENCH HERO! 🇫🇷</h1>
-<p>Il Corso Francese di Matteo - ESTATE 2026</p>
+<p>Il Corso Francese di David - ESTATE 2026</p>
 <p style="font-size:1em;margin-top:8px">Recupero Lingua Francese 💥</p>
 </header>
 
@@ -143,7 +143,7 @@ Livello <span id="currentLevel">1</span> - <span id="levelName">Débutant</span>
 
 <!-- HOME -->
 <div id="home" class="section active">
-<h2>👋 Ciao Matteo! Benvenuto nel tuo French Hero Journey!</h2>
+<h2>👋 Ciao David! Benvenuto nel tuo French Hero Journey!</h2>
 <div class="card">
 <h3>🎯 Il Tuo Obiettivo</h3>
 <p style="font-size:1.1em;margin:12px 0">
@@ -1118,7 +1118,7 @@ Recuperare il voto in francese passando da <strong style="color:#ED1C24">5</stro
 <div class="card">
 <h3>🇫🇷 Chiedimi qualsiasi cosa!</h3>
 <div id="tutorChat" style="background:#f8f9fa;border:3px solid #333;border-radius:10px;padding:15px;min-height:300px;max-height:500px;overflow-y:auto;margin:15px 0">
-<div class="dialogue-line customer">🇫🇷 Tutor: Bonjour Matteo! Scrivimi una domanda in italiano o francese!</div>
+<div class="dialogue-line customer">🇫🇷 Tutor: Bonjour David! Scrivimi una domanda in italiano o francese!</div>
 </div>
 <div style="display:flex;gap:10px">
 <input type="text" class="input-field" id="tutorInput" placeholder="Scrivi la tua domanda..." onkeypress="if(event.key==='Enter')sendTutorMessage()">
@@ -1275,7 +1275,7 @@ functions:[
 {q:"Per descrivere una foto:",o:["Cette photo","Dans cette image, je vois...","Regarde!"],a:1},
 {q:"Per chiedere il prezzo:",o:["Combien ça coûte?","Prix?","Argent combien?"],a:0},
 {q:"Per chiedere l'ora:",o:["Heure?","Quelle heure est-il?","Dis-moi l'heure"],a:1},
-{q:"Per presentarti:",o:["Moi Matteo","Je m'appelle Matteo, enchanté","Matteo nom"],a:1},
+{q:"Per presentarti:",o:["Moi David","Je m'appelle David, enchanté","David nom"],a:1},
 {q:"'Come stai?':",o:["Toi bon?","Comment ça va?","Quoi tu es?"],a:1},
 {q:"'Sto bene':",o:["Bon","Ça va bien, merci","Moi bon"],a:1},
 {q:"Per chiedere il conto:",o:["L'argent!","L'addition, s'il vous plaît","Payer maintenant!"],a:1}
@@ -2141,7 +2141,7 @@ const input = document.getElementById('tutorInput');
 const msg = input.value.trim();
 if(!msg) return;
 const chat = document.getElementById('tutorChat');
-chat.innerHTML += `<div class="dialogue-line staff">🧑 Matteo: ${msg}</div>`;
+chat.innerHTML += `<div class="dialogue-line staff">🧑 David: ${msg}</div>`;
 input.value = '';
 setTimeout(()=>{
 const response = generateTutorResponse(msg);
