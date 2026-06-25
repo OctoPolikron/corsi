@@ -1,18 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-</head>
-<body>
-  <h1>Seleziona pagina</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wolkcom</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Manrope:wght@400;600&display=swap");
 
-  <ul>
-    <li><a href="fra-david.html">Francese - David</a></li>
-    <li><a href="fra-matteo.html">Francese - Matteo</a></li>
-    <li><a href="ing-david.html">Inglese - David</a></li>
-    <li><a href="ing-matteo.html">Inglese - Matteo</a></li>
-  </ul>
+      :root {
+        --bg-1: #f5efe4;
+        --bg-2: #d8e7ea;
+        --ink: #14222e;
+        --accent: #ff6b2c;
+        --accent-2: #1f8a70;
+        --card: rgba(255, 255, 255, 0.78);
+        --shadow: 0 18px 50px rgba(20, 34, 46, 0.16);
+      }
 
-</body>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Manrope", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 15% 20%, rgba(255, 107, 44, 0.18), transparent 36%),
+          radial-gradient(circle at 85% 10%, rgba(31, 138, 112, 0.25), transparent 35%),
+          linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        display: grid;
+        place-items: center;
+        overflow-x: hidden;
+      }
+
+      .shape {
+        position: fixed;
+        border-radius: 999px;
+        filter: blur(1px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: float 12s ease-in-out infinite;
+      }
+
+      .shape.a {
+        width: 220px;
+        height: 220px;
+        background: #ff6b2c;
+        top: -40px;
+        right: -50px;
+      }
+
+      .shape.b {
+        width: 180px;
+        height: 180px;
+        background: #1f8a70;
+        bottom: -30px;
+        left: -20px;
+        animation-delay: 1.8s;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        width: min(92vw, 760px);
+        padding: clamp(1.4rem, 3.2vw, 2.7rem);
+        border-radius: 28px;
+        background: var(--card);
+        backdrop-filter: blur(8px);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(20, 34, 46, 0.09);
+        animation: rise 700ms ease-out both;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.32rem 0.72rem;
+        border-radius: 999px;
+        background: rgba(31, 138, 112, 0.14);
+        color: #125844;
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
+        animation: fadeIn 1s ease 0.25s both;
+      }
+
+      h1 {
+        font-family: "Syne", sans-serif;
+        margin: 0.9rem 0 0.65rem;
+        font-size: clamp(2.1rem, 5.6vw, 4.4rem);
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        animation: fadeIn 1s ease 0.4s both;
+      }
+
+      h1 .brand {
+        color: var(--accent);
+      }
+
+      p {
+        margin: 0;
+        max-width: 58ch;
+        font-size: clamp(1rem, 2.2vw, 1.24rem);
+        line-height: 1.55;
+        opacity: 0.9;
+        animation: fadeIn 1s ease 0.55s both;
+      }
+
+      .actions {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.72rem;
+        animation: fadeIn 1s ease 0.7s both;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        border-radius: 12px;
+        padding: 0.72rem 1rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+      }
+
+      .btn.primary {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .btn.secondary {
+        background: rgba(20, 34, 46, 0.08);
+        color: var(--ink);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(20, 34, 46, 0.2);
+      }
+
+      @keyframes rise {
+        from {
+          transform: translateY(14px) scale(0.99);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+
+      @media (max-width: 560px) {
+        .card {
+          border-radius: 22px;
+        }
+
+        .actions {
+          width: 100%;
+        }
+
+        .btn {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shape a" aria-hidden="true"></div>
+    <div class="shape b" aria-hidden="true"></div>
+
+    <main class="card">
+      <span class="eyebrow">Nuova pagina pronta</span>
+      <h1>Benvenuto su <span class="brand">Wolkcom</span></h1>
+      <p>
+        Questa pagina <strong>index.html</strong> e pronta da usare come homepage.
+        E leggera, responsive e ha uno stile moderno con animazioni essenziali.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#">Inizia</a>
+        <a class="btn secondary" href="#">Scopri di piu</a>
+      </div>
+    </main>
+  </body>
 </html>
